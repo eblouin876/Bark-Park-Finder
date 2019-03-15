@@ -35,17 +35,27 @@
             </div>
             <div class="col-3" id="active-park-card">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Launch demo modal
-                </button>
+                <div class="card" style="width: 18rem;">
+                    <img src="https://placeimg.com/480/480/nature" class="card-img-top" alt="Nature">
+                    <div class="card-body">
+                        <h5 class="card-title">Dog Park Name</h5>
+                        <p class="card-text">Fanciful description of the wonders that your dog can experience here</p>
+                        <div class="d-inline">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#parkModal">Reviews</button>
+                            <span id="park-rating">Rating: </span>
+                            <button type="button" class="btn" id="check-in">Check In</button>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="parkModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -60,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </div>
             <div class="col-4 row text-center" id="current-park-goers">
@@ -121,7 +132,6 @@
                     <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
                         style="height: 100px; width: 100px;">
                         <p id="userLocation">location</p>
-                </button>
 
                 <button type="button" class="btn btn-secondary"
                     style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
@@ -144,12 +154,10 @@
                 <h2 id="currentLocation" style="margin: auto;"></h2>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="parkModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
