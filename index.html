@@ -6,8 +6,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Bark Park Finder</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
-        crossorigin='anonymous'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
 
@@ -40,8 +40,8 @@
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -63,48 +63,80 @@
 
             </div>
             <div class="col-4 row text-center" id="current-park-goers">
-                <h1 style="margin: auto;">Currently at this park</h1>
+                <h1 id="thisPark" style="margin: auto;">Currently at this park</h1>
 
+                <div id="userCards">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                        <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
 
-                <button type="button" class="btn btn-primary" style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal" data-target="#userCardModal">
-                        <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                <button type="button" class="btn btn-primary"
+                    style="margin: auto; padding: 0; border: none; margin-bottom: 5px;" data-toggle="modal"
+                    data-target="#userCardModal">
+                    <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                        style="height: 100px; width: 100px;">
                 </button>
+
+                </div>
+
+                <h2 id="currentLocation" style="margin: auto;">Add current location here</h2>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -125,8 +157,8 @@
                 </div>
 
                 <!--Modal for user cards-->
-                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog"
+                    aria-labelledby="userCardModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
 
                         <!--Model Content-->
@@ -140,9 +172,12 @@
                             <div class="modal-body">
                                 <p>user description</p>
                                 <p>type dog?</p>
-                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" style="height: 100px; width: 100px;">
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
                                 <p>other</p>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima quis ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci officia aperiam quis earum rerum saepe.</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -156,11 +191,13 @@
     </div>
 
 
-    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
+    <script src='https://code.jquery.com/jquery-3.3.1.js'
+        integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
         crossorigin='anonymous'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
-        crossorigin='anonymous'></script>
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+        integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
         crossorigin='anonymous'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
     <script type='text/javascript' src='assets/javascript/main.js'></script>
