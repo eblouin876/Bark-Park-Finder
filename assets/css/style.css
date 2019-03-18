@@ -1,3 +1,4 @@
+
 /* Able to set color scheme here so that you don't have to search for every instance */
 :root {
     --primary-color: aqua;
@@ -282,4 +283,5 @@
     .main-card {
         grid-area: 2 / 6 / 10 / 10;
     }
+>>>>>>> d6ef3835f687da15acbeb3026d1c42f356cd8d43
 }
