@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Bark Park Finder</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+        crossorigin='anonymous'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
+
+</head>
+
+<body>
+
+    <nav class="nav">
+        <h1 class="nav-title">Bark Park Finder</h1>
+        <img src="assets/images/menu.png" class="nav-button">
+        <div class="nav-expand">
+            <h2 class="nav-expand-txt">Favorites</h2>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <div class="map-box" id="map">
+
+        </div>
+
+        <div class="main-card" id="park-card">
+            <img src="https://placeimg.com/480/480/nature" class="card-image" alt="Nature">
+            <h2 class="card-title">Park Name</h2>
+            <p class="card-text">Fanciful description of the wonders that your dog can experience here</p>
+            <button class="card-reviews" data-toggle="modal" data-target="#parkModal">Reviews</button>
+            <div class="card-rating center">* * * * *</div>
+            <button class="card-checkin">Check In</button>
+            <!-- Modal -->
+            <div class="modal fade" id="parkModal" tabindex="-1" role="dialog" aria-labelledby="parkModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="container-fluid">
+                                <div class="row text-center">
+
+                                    <div class="col">
+                                        <h5 class="modal-title" id="parkModalLabel">Modal title</h5>
+                                    </div>
+
+                                </div>
+                                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> -->
+                                <div class="row">
+
+
+                                    <div class="col-xs-12 col-md-5" id="user-review">
+                                        <form>
+                                            <label for="exampleFormControlSelect1">Example select</label>
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <button type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6" id="modal-comments" style="max-height: 75vh;">
+                                        <ul class="list-unstyled" style="overflow: scroll; max-height: 75vh;">
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media my-4">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                            <li class="media">
+                                                <img src="..." class="mr-3" alt="...">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
+                                                    metus scelerisque ante sollicitudin. Cras purus odio,
+                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                                    congue felis in faucibus.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="user-box" id="user-box">
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+            <a class="user-card" data-toggle="modal" data-target="#userCardModal">
+                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog" class="user-image">
+                <p class="user-location">location</p>
+                <!--Modal for user cards-->
+                <div class="modal fade" id="userCardModal" tabindex="-1" role="dialog" aria-labelledby="userCardModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <!--Model Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userCardModalLabel">Username goes here</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>user description</p>
+                                <p>type dog?</p>
+                                <img src="https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg" alt="test dog"
+                                    style="height: 100px; width: 100px;">
+                                <p>other</p>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi explicabo minima
+                                    quis
+                                    ipsam odio excepturi aliquid commodi quo. Dolore, ad corporis? Vitae sit adipisci
+                                    officia aperiam quis earum rerum saepe.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+
+
+        </div>
+    </div>
+
+
+    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
+        crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+        crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+        crossorigin='anonymous'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+    <script type='text/javascript' src="assets/javascript/grid.js"></script>
+    <script type='text/javascript' src='assets/javascript/main.js'></script>
+</body>
+
+</html>
