@@ -28,8 +28,8 @@ function initMap() {
 
     var request = {
        location: currentLocation,
-       radius: '5000',
-        query: 'off leash area',
+       radius: '7000',
+        keyword: 'off dog leash area',
         fields: ['name', 'geometry']
     };
 
@@ -38,7 +38,7 @@ function initMap() {
         console.log(results);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++){
-                createMarker(results[i]);
+                addPlaceMarker(results[i]);
                 console.log(results[i]);
             }
             

@@ -233,7 +233,7 @@
     .user-box {
         grid-area: 13 / 2 / 19 / 14;
     }
-
+  
     /* Map box */
     .map-box {
         grid-area: 2 / 2 / 6 / 14;
@@ -262,6 +262,17 @@
     /* Main card styling */
     .main-card {
         grid-area: 2 / 8 / 9 / 14;
+=======
+
+    /* Map box */
+    .map-box {
+        grid-area: 2 / 2 / 6 / 14;
+    }
+
+
+    /* Main card styling */
+    .main-card {
+        grid-area: 6 / 2 / 9 / 14;
     }
 }
 
@@ -283,5 +294,4 @@
     .main-card {
         grid-area: 2 / 6 / 10 / 10;
     }
->>>>>>> d6ef3835f687da15acbeb3026d1c42f356cd8d43
 }
