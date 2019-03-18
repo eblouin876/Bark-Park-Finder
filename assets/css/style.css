@@ -144,6 +144,7 @@
 .user-image {
     object-fit: contain;
     width: 100%;
+    max-height: 100%;
 }
 
 .user-location {
@@ -211,7 +212,8 @@
 }
 
 .card-rating {
-    grid-area: card-rating
+    grid-area: card-rating;
+    border: none;
 }
 
 .card-checkin {
@@ -228,29 +230,8 @@
     }
 
     .user-box {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: calc(100% / 2);
-        overflow: scroll;
         grid-area: 13 / 2 / 19 / 14;
-        border: .5px solid black;
     }
-
-    .user-card {
-        margin: .5rem;
-    }
-
-    .user-image {
-        object-fit: contain;
-        width: 100%;
-        max-height: 100%
-    }
-
-    .user-location {
-        transform: translateY(-2rem);
-        text-align: center;
-    }
-
 
     /* Map box */
     .map-box {
@@ -260,90 +241,16 @@
 
     /* Main card styling */
     .main-card {
-        display: grid;
         grid-area: 6 / 2 / 9 / 14;
-        margin: .5rem;
-        grid-template-columns: 10% 1fr 1fr 1fr 10%;
-        grid-template-rows: auto;
-        grid-template-areas:
-            "img img img img img"
-            "img img img img img"
-            "img img img img img"
-            ". title title title ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". card-review card-rating card-checkin ."
-    }
-
-    .card-image {
-        grid-area: img;
-        object-fit: contain;
-        width: 100%;
-        margin-bottom: inherit;
-        max-height: calc(4 * var(--row-height))
-    }
-
-    .card-title {
-        grid-area: title;
-        font-size: 2rem;
-    }
-
-    .card-text {
-        grid-area: text;
-    }
-
-    .card-reviews,
-    .card-rating,
-    .card-checkin {
-        margin: inherit;
-        font-size: 1rem;
-        border: 1px solid var(--border-color);
-        background-color: var(--background-color);
-        color: var(--text-color);
-        padding: .5rem;
-        text-decoration: none
-    }
-
-    .card-reviews {
-        grid-area: card-review
-    }
-
-    .card-rating {
-        grid-area: card-rating
-    }
-
-    .card-checkin {
-        grid-area: card-checkin
     }
 }
 
 @media screen and (min-width: 702px) {
     .user-box {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-auto-rows: calc(100% / 2);
-        overflow: scroll;
         grid-area: 9 / 2 / 12 / 14;
-        border: .5px solid black;
+        grid-auto-rows: 50%;
+        grid-template-columns: repeat(6, 1fr)
     }
-
-    .user-card {
-        margin: .5rem;
-    }
-
-    .user-image {
-        object-fit: contain;
-        width: 100%;
-        max-height: 100%
-    }
-
-    .user-location {
-        transform: translateY(-2rem);
-        text-align: center;
-    }
-
 
     /* Map box */
     .map-box {
@@ -353,62 +260,7 @@
 
     /* Main card styling */
     .main-card {
-        display: grid;
         grid-area: 2 / 8 / 9 / 14;
-        margin: .5rem;
-        grid-template-columns: 10% 1fr 1fr 1fr 10%;
-        grid-template-rows: auto;
-        grid-template-areas:
-            "img img img img img"
-            "img img img img img"
-            "img img img img img"
-            ". title title title ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". card-review card-rating card-checkin ."
-    }
-
-    .card-image {
-        grid-area: img;
-        object-fit: contain;
-        width: 100%;
-        margin-bottom: inherit;
-        max-height: calc(4 * var(--row-height))
-    }
-
-    .card-title {
-        grid-area: title;
-        font-size: 2rem;
-    }
-
-    .card-text {
-        grid-area: text;
-    }
-
-    .card-reviews,
-    .card-rating,
-    .card-checkin {
-        margin: inherit;
-        font-size: 1rem;
-        border: 1px solid var(--border-color);
-        background-color: var(--background-color);
-        color: var(--text-color);
-        padding: .5rem;
-        text-decoration: none
-    }
-
-    .card-reviews {
-        grid-area: card-review
-    }
-
-    .card-rating {
-        grid-area: card-rating
-    }
-
-    .card-checkin {
-        grid-area: card-checkin
     }
 }
 
@@ -416,92 +268,18 @@
 
     /* Users box */
     .user-box {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: calc(100% / 4);
-        overflow: scroll;
         grid-area: 2 / 10 / 10 / 14;
-        border: .5px solid black;
+        grid-template-columns: repeat(3, calc(100% / 3));
+        grid-auto-rows: calc(100% / 4);
     }
-
-    .user-card {
-        margin: .5rem;
-    }
-
-    .user-image {
-        object-fit: contain;
-        width: 100%;
-    }
-
-    .user-location {
-        transform: translateY(-2rem);
-        text-align: center;
-    }
-
 
     /* Map box */
     .map-box {
-        background-color: var(--primary-color);
         grid-area: 2 / 2 / 10 / 6;
     }
 
     /* Card styling */
     .main-card {
-        display: grid;
         grid-area: 2 / 6 / 10 / 10;
-        margin: .5rem;
-        grid-template-columns: 10% 1fr 1fr 1fr 10%;
-        grid-template-rows: auto;
-        grid-template-areas:
-            "img img img img img"
-            "img img img img img"
-            "img img img img img"
-            ". title title title ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". text text text ."
-            ". card-review card-rating card-checkin ."
-    }
-
-    .card-image {
-        grid-area: img;
-        object-fit: contain;
-        width: 100%;
-        margin-bottom: inherit;
-        max-height: calc(4 * var(--row-height))
-    }
-
-    .card-title {
-        grid-area: title;
-        font-size: 2rem;
-    }
-
-    .card-text {
-        grid-area: text;
-    }
-
-    .card-reviews,
-    .card-rating,
-    .card-checkin {
-        margin: inherit;
-        font-size: 1rem;
-        border: 1px solid var(--border-color);
-        background-color: var(--background-color);
-        color: var(--text-color);
-        padding: .5rem;
-        text-decoration: none
-    }
-
-    .card-reviews {
-        grid-area: card-review
-    }
-
-    .card-rating {
-        grid-area: card-rating
-    }
-
-    .card-checkin {
-        grid-area: card-checkin
     }
 }
