@@ -30,7 +30,7 @@ function initMap() {
         map: map,
     })
     
-    
+    queryDogParks();
 
     
     map.setCenter(currentLocation);
@@ -52,10 +52,10 @@ function initMap() {
                     parkMarkArrary.push(results[i]);
                     // console.log(results[i]);
                 }
-                //map.setCenter(results[0].geometry.location)
+                showMarkers(parkMarkArrary);
             }
         })
-        showMarkers(parkMarkArrary);
+        
     }
     
 
@@ -82,11 +82,12 @@ function initMap() {
             lat: marker.getPosition().lat(),
             lng: marker.getPosition().lng()
         }
+        parkMarkArrary.length = 0;
         queryDogParks();
         console.log(currentLocation);
     })
     console.log($(marker))
-    $(marker).triggerHandler('click');
+    
     
 
 }
