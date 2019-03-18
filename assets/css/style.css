@@ -1,4 +1,3 @@
-
 /* Able to set color scheme here so that you don't have to search for every instance */
 :root {
     --primary-color: aqua;
@@ -222,6 +221,11 @@
 }
 
 
+/* Review Image */
+.review-image {
+    max-height: 25%;
+    max-width: 25%;
+}
 
 @media screen and (max-width: 702px) {
     .nav {
@@ -233,7 +237,7 @@
     .user-box {
         grid-area: 13 / 2 / 19 / 14;
     }
-  
+
     /* Map box */
     .map-box {
         grid-area: 2 / 2 / 6 / 14;
@@ -248,7 +252,7 @@
 
 @media screen and (min-width: 702px) {
     .user-box {
-        grid-area: 9 / 2 / 12 / 14;
+        grid-area: 13 / 2 / 17 / 14;
         grid-auto-rows: 50%;
         grid-template-columns: repeat(6, 1fr)
     }
