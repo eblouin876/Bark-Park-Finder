@@ -27,29 +27,38 @@ function initMap() {
      infowindow = new google.maps.InfoWindow();
 
     var request = {
-       // location: currentLocation,
-       // radius: '5000',
+       location: currentLocation,
+       radius: '5000',
         query: 'off leash area',
         fields: ['name', 'geometry']
     };
 
     service = new google.maps.places.PlacesService(map);
-    service.findPlaceFromQuery(request, function (results, status) {
+    service.nearbySearch(request, function (results, status) {
+        console.log(results);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++){
-                addParkMarker(results[i]);
+                createMarker(results[i]);
+                console.log(results[i]);
             }
             
         
-        //map.setCenter(results[0].geometry.location)
+        map.setCenter(results[0].geometry.location)
         }
     })
+    function createMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
 
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+    }
 
-    google.maps.event.addListener(marker, 'click', function(){
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
+   
 
 
 }
@@ -70,7 +79,6 @@ function addPlaceMarker(place) {
     });
     marker.addListener('click', toggleBounce);
 }
-
 function toggleBounce() {
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
