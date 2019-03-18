@@ -262,7 +262,7 @@
     /* Main card styling */
     .main-card {
         grid-area: 2 / 8 / 9 / 14;
-=======
+    }
 
     /* Map box */
     .map-box {

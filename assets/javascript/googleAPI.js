@@ -4,7 +4,7 @@
 var map;
 var service;
 var currentLocation;
-var infowindow 
+var infowindow
 var seattle = {
     lat: 47.6062,
     lng: -122.3321
@@ -15,6 +15,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
         lng: position.coords.longitude
     }
 })
+parkMarkArrary = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -22,50 +23,79 @@ function initMap() {
         center: currentLocation
     });
     // var marker = new google.maps.Marker({position: currentLocation, map: map});
-    addMarker(currentLocation);
-
-     infowindow = new google.maps.InfoWindow();
-
-    var request = {
-       location: currentLocation,
-       radius: '7000',
-        keyword: 'off dog leash area',
-        fields: ['name', 'geometry']
-    };
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, function (results, status) {
-        console.log(results);
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++){
-                addPlaceMarker(results[i]);
-                console.log(results[i]);
-            }
-            
-        
-        map.setCenter(results[0].geometry.location)
-        }
+    //addMarker(currentLocation);
+    var marker = new google.maps.Marker({
+        position: currentLocation,
+        draggable: true,
+        map: map,
     })
-    function createMarker(place) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+    
+    
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
+    
+    map.setCenter(currentLocation);
+    
+    //showMarkers(parkMarkArrary);
+    function queryDogParks() {
+        var request = {
+            location: currentLocation,
+            radius: '7000',
+            keyword: 'off dog leash area',
+            fields: ['name', 'geometry']
+        };
+        console.log(request)
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, function (results, status) {
+            console.log(results);
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    parkMarkArrary.push(results[i]);
+                    // console.log(results[i]);
+                }
+                //map.setCenter(results[0].geometry.location)
+            }
+        })
+        showMarkers(parkMarkArrary);
+    }
+    
+
+    function showMarkers(arr){
+        for(var i = 0; i < arr.length; i++){
+            addPlaceMarker(arr[i]);
+        }
     }
 
-   
+    function createMarker(place) {
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
 
+        // google.maps.event.addListener(marker, 'click', function () {
+        //     infowindow.setContent(place.name);
+        //     infowindow.open(map, this);
+        // });
+    }
+
+    google.maps.event.addListener(marker, 'mouseup', function () {
+        currentLocation = {
+            lat: marker.getPosition().lat(),
+            lng: marker.getPosition().lng()
+        }
+        queryDogParks();
+        console.log(currentLocation);
+    })
+    console.log($(marker))
+    $(marker).triggerHandler('click');
+    
 
 }
+
 
 function addMarker(coords) {
     var marker = new google.maps.Marker({
         position: coords,
+        draggable: true,
         map: map,
     })
 }
@@ -74,11 +104,13 @@ function addPlaceMarker(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
-        draggable: true,
+        icon: 'https://img.icons8.com/ultraviolet/40/000000/corgi.png',
+        draggable: false,
         animation: google.maps.Animation.DROP,
     });
     marker.addListener('click', toggleBounce);
 }
+
 function toggleBounce() {
     if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
@@ -87,7 +119,21 @@ function toggleBounce() {
     }
 }
 
+// function geoFindMarker(pos){
+//     geocoder = new google.maps.Geocoder();
+//     geocoder.geocoder({latLng: pos},
+//                     function(results, status){
+//                         if(status === google.maps.GeocoderStatus.OK)
+//                         {
+//                             //do something
+//                         }
+//                         else{
+//                             //do something
+//                         }
+//                     }
+//     )
 
+// }
 
 
 // service = new google.maps.places.PlacesService(map);
