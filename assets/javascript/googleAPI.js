@@ -4,18 +4,21 @@
 var map;
 var service;
 var currentLocation;
-var infowindow
+var infowindow;
+parkMarkArrary = [];
+var parks = {};
 var seattle = {
     lat: 47.6062,
     lng: -122.3321
 };
+//
 navigator.geolocation.getCurrentPosition(function (position) {
     currentLocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
     }
 })
-parkMarkArrary = [];
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -29,18 +32,18 @@ function initMap() {
         draggable: true,
         map: map,
     })
-    
+
     queryDogParks();
 
-    
+
     map.setCenter(currentLocation);
-    
+
     //showMarkers(parkMarkArrary);
     function queryDogParks() {
         var request = {
             location: currentLocation,
             radius: '7000',
-            keyword: 'off dog leash area',
+            keyword: 'off leash area',
             fields: ['name', 'geometry']
         };
         console.log(request)
@@ -55,13 +58,19 @@ function initMap() {
                 showMarkers(parkMarkArrary);
             }
         })
-        
-    }
-    
 
-    function showMarkers(arr){
-        for(var i = 0; i < arr.length; i++){
+    }
+
+    // function deleteMarkers() {
+    //     clearMarkers();
+    //     parkMarkArrary = [];
+    //   }
+
+    function showMarkers(arr) {
+
+        for (var i = 0; i < arr.length; i++) {
             addPlaceMarker(arr[i]);
+
         }
     }
 
@@ -82,15 +91,66 @@ function initMap() {
             lat: marker.getPosition().lat(),
             lng: marker.getPosition().lng()
         }
-        parkMarkArrary.length = 0;
+        map.setCenter(currentLocation);
+        for(var i = 0; i < parkMarkArrary; i++){
+        parkMarkArrary[i].setMap(null);
+        }
+        parkMarkArrary = [];
         queryDogParks();
         console.log(currentLocation);
     })
     console.log($(marker))
-    
-    
 
+    function placeDetailsFromSearch(arr) {
+        var placeIDarray = []
+        for (var i = 0; i < arr.length; i++) {
+            placeIDarray.push(arr[i].place_id)
+            console.log(arr[i].place_id)
+        }
+        queryPlaceDetail(placeIDarray);
+    }
+
+    var IdArray = [];
+    jsonObj = {};
+    
+    setTimeout(function () {
+        placeDetailsFromSearch(parkMarkArrary);
+    }, 2000)
+
+
+var queryCount = 0;
+    function queryPlaceDetail(idarry){
+        // console.log(idarry);
+        // console.log(queryCount)
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            var queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idarry[queryCount] + "&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
+            fetch(queryURL).then(function (response) {
+                response.json().then( function(response){
+                    console.log(response.result)
+                    let result = response.result;
+                    let reviews = [];
+                    for(var i = 0; i < result.reviews.length; i++){                     
+                        let val = result.reviews[i]
+                        let review = new Review(val.profile_photo_url,val.author_name, val.rating, val.text)
+                        reviews.push(review);
+                    }
+                    let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.geometry.location, result.rating, reviews);
+                    parks[result.place_id] = park;
+                });
+                queryCount++;
+                if(queryCount < idarry.length){
+                    queryPlaceDetail(idarry);
+                }
+               //jsonObj[IdArray[i]] = response;
+            });
+        
+        //console.log(jsonObj);
+    }
 }
+//https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJDdEp4kUUkFQRYgiQJxQ7Akc&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM
+
+
+
 
 
 function addMarker(coords) {

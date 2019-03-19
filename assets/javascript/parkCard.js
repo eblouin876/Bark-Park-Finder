@@ -6,7 +6,7 @@ class ParkCard {
         this.location = location;
         this.rating = rating;
         this.reviews = reviews;
-        this.buildCard();
+        
     }
 
     buildCard() {
