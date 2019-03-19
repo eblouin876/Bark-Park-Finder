@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
             console.log(pathReference);
 
-            var newUser = new userCard(userValue, "useremail", pathReference, bioValue, dogValue, "here");
+            var newUser = new userCard(userValue, useremail, pathReference, bioValue, dogValue, "here");
 
             db.collection("users").add({
                 email: useremail,
@@ -50,7 +50,6 @@ firebase.auth().onAuthStateChanged(function(user){
                 username: userValue,
                 dog: dogValue,
                 bio: bioValue,
-                userCard: newUser
             })
 
 
