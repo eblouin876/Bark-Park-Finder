@@ -20,6 +20,10 @@
         <img src="assets/images/menu.png" class="nav-button">
         <div class="nav-expand">
             <h2 class="nav-expand-txt">Favorites</h2>
+            <button class="nav-expand-txt hide" id="btnlogin">Log In</button>
+            <button class="nav-expand-txt hide" id="btnsignup">Sign Up</button>
+
+            <button class="nav-expand-txt" id="btnlogout">Log Out</button>
         </div>
     </nav>
 
@@ -68,17 +72,9 @@
                                                 <option>5</option>
                                             </select>
                                             <div class="form-group">
-<<<<<<< HEAD
-                                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    rows="3"></textarea>
-                                                <button type="submit" class="btn btn-primary"
-                                                    style="margin: 10px;">Submit</button>
-=======
                                                 <label for="exampleFormControlTextarea1">Your Review</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 <button type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
->>>>>>> 7496924a392eb97eadfb64a9ef0f1de28db52784
                                             </div>
                                         </form>
                                     </div>
@@ -119,22 +115,33 @@
 
 
 
-<<<<<<< HEAD
-    <script src='https://code.jquery.com/jquery-3.3.1.js'
-        integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
-        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
-=======
     <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
         crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
->>>>>>> 7496924a392eb97eadfb64a9ef0f1de28db52784
         crossorigin='anonymous'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
         integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
         crossorigin='anonymous'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+
+    <!--Firebase-->
+    
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDE9foC7Jzh4r26yQtDzCanPb-qNiCRXkc",
+        authDomain: "ball-park-finder.firebaseapp.com",
+        databaseURL: "https://ball-park-finder.firebaseio.com",
+        projectId: "ball-park-finder",
+        storageBucket: "ball-park-finder.appspot.com",
+        messagingSenderId: "323168129148"
+    };
+    firebase.initializeApp(config);
+    </script>
+
     <script type='text/javascript' src="assets/javascript/grid.js"></script>
+    <script type="text/javascript" src="assets/javascript/auth.js"></script>
     <script type="text/javascript" src="assets/javascript/user.js"></script>
     <script type='text/javascript' src='assets/javascript/main.js'></script>
 
