@@ -37,7 +37,7 @@ function initMap() {
 
 
     map.setCenter(currentLocation);
-
+    var MarkersArr = []
     //showMarkers(parkMarkArrary);
     function queryDogParks() {
         var request = {
@@ -53,9 +53,10 @@ function initMap() {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     parkMarkArrary.push(results[i]);
-                    // console.log(results[i]);
+                    MarkersArr.push(addPlaceMarker(results[i]));
+                     console.log(results[i]);
                 }
-                showMarkers(parkMarkArrary);
+                //showMarkers(MarkersArr);
             }
         })
 
@@ -66,13 +67,12 @@ function initMap() {
     //     parkMarkArrary = [];
     //   }
 
-    function showMarkers(arr) {
+    // function showMarkers(arr) {
+    //     for (var i = 0; i < arr.length; i++) {
+    //         addPlaceMarker(arr[i]);
 
-        for (var i = 0; i < arr.length; i++) {
-            addPlaceMarker(arr[i]);
-
-        }
-    }
+    //     }
+    // }
 
     function createMarker(place) {
         var marker = new google.maps.Marker({
@@ -92,10 +92,12 @@ function initMap() {
             lng: marker.getPosition().lng()
         }
         map.setCenter(currentLocation);
-        for(var i = 0; i < parkMarkArrary; i++){
-        parkMarkArrary[i].setMap(null);
+        for(var i = 0; i < MarkersArr.length; i++){
+       MarkersArr[i].setMap(null);
+        //console.log("LOOKIE"+ MarkersArr);
         }
-        parkMarkArrary = [];
+        MarkersArr = [];
+        console.log("LOOKIE"+ MarkersArr);
         queryDogParks();
         console.log(currentLocation);
     })
@@ -111,7 +113,7 @@ function initMap() {
     }
 
     var IdArray = [];
-    jsonObj = {};
+    
     
     setTimeout(function () {
         placeDetailsFromSearch(parkMarkArrary);
@@ -170,6 +172,7 @@ function addPlaceMarker(place) {
         animation: google.maps.Animation.DROP,
     });
     marker.addListener('click', toggleBounce);
+    return marker;
 }
 
 function toggleBounce() {
@@ -180,66 +183,4 @@ function toggleBounce() {
     }
 }
 
-// function geoFindMarker(pos){
-//     geocoder = new google.maps.Geocoder();
-//     geocoder.geocoder({latLng: pos},
-//                     function(results, status){
-//                         if(status === google.maps.GeocoderStatus.OK)
-//                         {
-//                             //do something
-//                         }
-//                         else{
-//                             //do something
-//                         }
-//                     }
-//     )
 
-// }
-
-
-// service = new google.maps.places.PlacesService(map);
-
-
-
-//   service.nearbySearch(request, function() {
-
-//   }
-
-//   })
-//   service = new google.maps.places.PlacesService(map);
-//   service.findPlaceFromQuery(request, function(results, satatus){
-//       if(status === status === google.maps.places.PlacesServiceStatus.OK) {
-//         for (var i = 0; i < results.length; i++) {
-//           createMarker(results[i]);
-//         }
-
-//         map.setCenter(results[0].geometry.location);
-//       }
-//   })
-
-
-// function findMe(){
-
-// }
-//   function geoFindMe(){
-//     function success(position) {
-//         const latitude  = position.coords.latitude;
-//         const longitude = position.coords.longitude;
-//         console.log(currentLocation);
-//         currentLocation = {lat: latitude, lng: longitude};
-//         // status.textContent = '';
-//         // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-//         // mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-//       }
-//       function error() {
-//         status.textContent = 'Unable to retrieve your location';
-
-//         // if (!navigator.geolocation) {
-//         //     status.textContent = 'Geolocation is not supported by your browser';
-//         //   } else {
-//         //     status.textContent = 'Locating…';
-//         //     navigator.geolocation.getCurrentPosition(success, error);
-//         //   }
-
-//       }
-//   }
