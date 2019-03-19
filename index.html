@@ -69,13 +69,16 @@
                                             </select>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Your Review</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                <button type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                    rows="3"></textarea>
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="margin: 10px;">Submit</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6" style="max-height: 75vh;">
-                                        <ul class="list-unstyled" id="modal-comments" style="overflow: scroll; max-height: 75vh;">
+                                        <ul class="list-unstyled" id="modal-comments"
+                                            style="overflow: scroll; max-height: 75vh;">
 
                                         </ul>
                                     </div>
@@ -99,21 +102,22 @@
         <div class="user-box" id="user-box">
             <!-- Trigger/Open The Modal -->
             <div id="buttonDiv"></div>
-    
+
             <!-- The Modal -->
             <div id="myModal" class="modal">
-    
+
             </div>
-    
-    
+
+
         </div>
     </div>
 
 
 
-    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
-        crossorigin='anonymous'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+    <script src='https://code.jquery.com/jquery-3.3.1.js'
+        integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
         crossorigin='anonymous'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
         integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
@@ -121,19 +125,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
     <!--Firebase-->
-    
+
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyDE9foC7Jzh4r26yQtDzCanPb-qNiCRXkc",
-        authDomain: "ball-park-finder.firebaseapp.com",
-        databaseURL: "https://ball-park-finder.firebaseio.com",
-        projectId: "ball-park-finder",
-        storageBucket: "ball-park-finder.appspot.com",
-        messagingSenderId: "323168129148"
-    };
-    firebase.initializeApp(config);
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDE9foC7Jzh4r26yQtDzCanPb-qNiCRXkc",
+            authDomain: "ball-park-finder.firebaseapp.com",
+            databaseURL: "https://ball-park-finder.firebaseio.com",
+            projectId: "ball-park-finder",
+            storageBucket: "ball-park-finder.appspot.com",
+            messagingSenderId: "323168129148"
+        };
+        firebase.initializeApp(config);
     </script>
 
     <script type='text/javascript' src="assets/javascript/grid.js"></script>
@@ -144,7 +148,8 @@
     <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
     <script type='text/javascript' src="assets/javascript/parkCard.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&callback=initMap"></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
         async defer></script>
 </body>
 
