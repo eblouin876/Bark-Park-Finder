@@ -1,5 +1,5 @@
 class ParkCard {
-    constructor(image, name, description, location, rating, reviews) {
+    constructor(image, name, description, location, rating, reviews = []) {
         this.image = image;
         this.name = name;
         this.description = description;
@@ -42,7 +42,7 @@ class Review {
     }
 
     buildReview() {
-        let review = $('<li>').addClass('media')
+        let review = $('<li>').addClass('media m-1')
         let image = $('<img>').attr('src', this.image).addClass('mr-3 review-image').attr('alt', this.name)
         let body = $('<div>').addClass('media-body')
         let text = $('<h5>').addClass('mt-0 mb-1').text(`${this.name}: ${this.rating}`)
@@ -51,8 +51,3 @@ class Review {
         $('#modal-comments').append(review.append(image, body))
     }
 }
-
-
-let review1 = new Review('https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg', 'Emile', '* * * *', 'Great!')
-let review2 = new Review('https://www.hsppr.org/sites/default/files/Donate-dog_0.jpg', 'bob', '**', 'Terrible')
-let park = new ParkCard("https://placeimg.com/480/480/nature", "Magnolia Dog Park", "Fanciful description of the wonders that your dog can experience here", "Magnolia", "* * * *", [review1, review2])
