@@ -126,6 +126,44 @@
     overflow: hidden;
 }
 
+/* Input boxes */
+.inputs {
+    grid-area: 2 / 2 / 3 / 14;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#distance {
+    position: relative;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+#rating {
+    position: relative;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+#location {
+    position: relative;
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.input-box {
+    width: 75%;
+    border: .5px solid #ccc;
+    height: 75%;
+    align-self: center;
+    justify-self: center;
+    position: absolute;
+    left: 12.5%;
+    top: 12.5%;
+}
+
+.search-button {
+    right: 15%;
+    position: absolute;
+    top: 25%;
+}
 
 /* Users box and card styling */
 .user-box {
@@ -155,7 +193,7 @@
 
 /* Map box */
 .map-box {
-    grid-area: 3 / 2 / 11 / 6;
+    grid-area: 4 / 2 / 11 / 6;
 }
 
 
@@ -221,6 +259,11 @@
 }
 
 
+/* Review Image */
+.review-image {
+    max-height: 25%;
+    max-width: 25%;
+}
 
 @media screen and (max-width: 702px) {
     .nav {
@@ -234,27 +277,35 @@
     }
 
     /* Map box */
+    .inputs {
+        grid-area: 2 / 2 / 3 / 14
+    }
+
     .map-box {
-        grid-area: 2 / 2 / 6 / 14;
+        grid-area: 3 / 2 / 7 / 14;
     }
 
 
     /* Main card styling */
     .main-card {
-        grid-area: 6 / 2 / 9 / 14;
+        grid-area: 7 / 2 / 10 / 14;
     }
 }
 
 @media screen and (min-width: 702px) {
     .user-box {
-        grid-area: 9 / 2 / 12 / 14;
+        grid-area: 10 / 2 / 13 / 14;
         grid-auto-rows: 50%;
         grid-template-columns: repeat(6, 1fr)
     }
 
     /* Map box */
+    .inputs {
+        grid-area: 2 / 2 / 3 / 8;
+    }
+
     .map-box {
-        grid-area: 2 / 2 / 8 / 8;
+        grid-area: 3 / 2 / 8 / 8;
     }
 
 
@@ -262,6 +313,8 @@
     .main-card {
         grid-area: 2 / 8 / 9 / 14;
     }
+
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -274,8 +327,12 @@
     }
 
     /* Map box */
+    .inputs {
+        grid-area: 2 / 2 / 3 / 6
+    }
+
     .map-box {
-        grid-area: 2 / 2 / 10 / 6;
+        grid-area: 3 / 2 / 10 / 6;
     }
 
     /* Card styling */

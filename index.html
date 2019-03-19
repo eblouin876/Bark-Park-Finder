@@ -24,8 +24,33 @@
     </nav>
 
     <div class="wrapper">
-        <div class="map-box" id="map">
+        <div class="inputs">
+            <div id="distance">
+                <select class="input-box" id="dist">
+                    <option value="4023">2.5 Miles</option>
+                    <option value="8046">5 Miles</option>
+                    <option value="12069">7.5 Miles</option>
+                    <option value="16092">10 Miles</option>
+                </select>
+                <img src="assets/images/search.png" alt="Search" ref="#dist" class="search-button">
+            </div>
+            <div id="rating">
+                <select class="input-box" id="rate">
+                    <option value="3+">3+</option>
+                    <option value="3.5+">3.5+</option>
+                    <option value="4+">4+</option>
+                    <option value="4.5+">4.5+</option>
+                    <option value="5">5</option>
+                </select>
+                <img src="assets/images/search.png" alt="Search" ref="#rate" class="search-button">
+            </div>
+            <div id="location">
+                <input class="input-box" type="text" name="location" id="loc" placeholder=" Location">
+                <img src="assets/images/search.png" alt="Search" ref="#loc" class="search-button">
+            </div>
 
+        </div>
+        <div class="map-box" id="map">
         </div>
 
         <div class="main-card" id="park-card">
@@ -35,6 +60,8 @@
             <button class="card-reviews" data-toggle="modal" data-target="#parkModal">Reviews</button>
             <div class="card-rating center">* * * * *</div>
             <button class="card-checkin">Check In</button>
+        </div>
+        <div>
             <!-- Modal -->
             <div class="modal fade" id="parkModal" tabindex="-1" role="dialog" aria-labelledby="parkModalLabel"
                 aria-hidden="true">
@@ -45,7 +72,7 @@
                                 <div class="row text-center">
 
                                     <div class="col">
-                                        <h5 class="modal-title" id="parkModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="parkModalLabel"></h5>
                                     </div>
 
                                 </div>
@@ -57,7 +84,7 @@
 
                                     <div class="col-xs-12 col-md-5" id="user-review">
                                         <form>
-                                            <label for="exampleFormControlSelect1">Example select</label>
+                                            <label for="exampleFormControlSelect1">Your Rating</label>
                                             <select class="form-control" id="exampleFormControlSelect1">
                                                 <option>1</option>
                                                 <option>2</option>
@@ -66,135 +93,15 @@
                                                 <option>5</option>
                                             </select>
                                             <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                <label for="exampleFormControlTextarea1">Your Review</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 <button type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-xs-12 col-md-6" id="modal-comments" style="max-height: 75vh;">
-                                        <ul class="list-unstyled" style="overflow: scroll; max-height: 75vh;">
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media my-4">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <img src="..." class="mr-3" alt="...">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                    metus scelerisque ante sollicitudin. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                                    congue felis in faucibus.
-                                                </div>
-                                            </li>
+                                    <div class="col-xs-12 col-md-6" style="max-height: 75vh;">
+                                        <ul class="list-unstyled" id="modal-comments" style="overflow: scroll; max-height: 75vh;">
+
                                         </ul>
                                     </div>
 
@@ -572,6 +479,7 @@
     </div>
 
 
+
     <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
         crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
@@ -581,6 +489,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
     <script type='text/javascript' src="assets/javascript/grid.js"></script>
     <script type='text/javascript' src='assets/javascript/main.js'></script>
+    <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
+    <script type='text/javascript' src="assets/javascript/parkCard.js"></script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
+        async defer></script>
 </body>
 
 </html>
