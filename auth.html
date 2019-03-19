@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset='utf-8'>
+    <title>Bark Park Finder</title>
+</head>
+
+<body>
+
+    <!--input fields and buttons-->
+    <div>
+        <input id="email" type="email" placeholder="Email">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button id="btnlogin">Log in</button>
+
+        <button id="btnsignup">Sign Up</button>
+
+        <button id="btnlogout">Log Out</button>
+    </div>
+
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDE9foC7Jzh4r26yQtDzCanPb-qNiCRXkc",
+            authDomain: "ball-park-finder.firebaseapp.com",
+            databaseURL: "https://ball-park-finder.firebaseio.com",
+            projectId: "ball-park-finder",
+            storageBucket: "ball-park-finder.appspot.com",
+            messagingSenderId: "323168129148"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript" src="assets/javascript/auth.js"></script>
+</body>
+
+</html>
