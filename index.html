@@ -24,8 +24,33 @@
     </nav>
 
     <div class="wrapper">
-        <div class="map-box" id="map">
+        <div class="inputs">
+            <div id="distance">
+                <select class="input-box" id="dist">
+                    <option value="4023">2.5 Miles</option>
+                    <option value="8046">5 Miles</option>
+                    <option value="12069">7.5 Miles</option>
+                    <option value="16092">10 Miles</option>
+                </select>
+                <img src="assets/images/search.png" alt="Search" ref="#dist" class="search-button">
+            </div>
+            <div id="rating">
+                <select class="input-box" id="rate">
+                    <option value="3+">3+</option>
+                    <option value="3.5+">3.5+</option>
+                    <option value="4+">4+</option>
+                    <option value="4.5+">4.5+</option>
+                    <option value="5">5</option>
+                </select>
+                <img src="assets/images/search.png" alt="Search" ref="#rate" class="search-button">
+            </div>
+            <div id="location">
+                <input class="input-box" type="text" name="location" id="loc" placeholder=" Location">
+                <img src="assets/images/search.png" alt="Search" ref="#loc" class="search-button">
+            </div>
 
+        </div>
+        <div class="map-box" id="map">
         </div>
 
         <div class="main-card" id="park-card">
