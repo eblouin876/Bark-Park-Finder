@@ -6,8 +6,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Bark Park Finder</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+        crossorigin='anonymous'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
 
@@ -55,11 +55,11 @@
 
         <div class="main-card" id="park-card">
             <img src="https://placeimg.com/480/480/nature" class="card-image" alt="Nature">
-            <h2 class="card-title">Park Name</h2>
+            <h2 class="card-title" id="park-name">Park Name</h2>
             <p class="card-text">Fanciful description of the wonders that your dog can experience here</p>
             <button class="card-reviews" data-toggle="modal" data-target="#parkModal">Reviews</button>
             <div class="card-rating center">* * * * *</div>
-            <button class="card-checkin">Check In</button>
+            <button class="card-checkin" id="check-in">Check In</button>
         </div>
         <div>
             <!-- Modal -->
@@ -94,16 +94,13 @@
                                             </select>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Your Review</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    rows="3"></textarea>
-                                                <button type="submit" class="btn btn-primary"
-                                                    style="margin: 10px;">Submit</button>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <button type="submit" class="btn btn-primary" style="margin: 10px;">Submit</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-xs-12 col-md-6" style="max-height: 75vh;">
-                                        <ul class="list-unstyled" id="modal-comments"
-                                            style="overflow: scroll; max-height: 75vh;">
+                                        <ul class="list-unstyled" id="modal-comments" style="overflow: scroll; max-height: 75vh;">
 
                                         </ul>
                                     </div>
@@ -139,13 +136,11 @@
 
 
 
-    <script src='https://code.jquery.com/jquery-3.3.1.js'
-        integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
-        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+    <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
         crossorigin='anonymous'></script>
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
-        integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+        crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
         crossorigin='anonymous'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
@@ -172,9 +167,9 @@
 
     <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
     <script type='text/javascript' src="assets/javascript/parkCard.js"></script>
+    <script type='text/javascript' src="assets/javascript/checkIn.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&callback=initMap"></script> -->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
         async defer></script>
 </body>
 
