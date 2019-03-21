@@ -16,7 +16,7 @@ class ParkCard {
         let description = $('<p>').addClass('card-text').text(this.description)
         let reviews = $('<button>').addClass('card-reviews').attr('data-toggle', 'modal').attr('data-target', '#parkModal').text("Reviews")
         let rating = $('<div>').addClass('card-rating center').text(this.rating)
-        let check = $('<button>').addClass('card-checkin').text('Check In')
+        let check = $('<button>').addClass('card-checkin').text('Check In').attr('data-location', this.location)
         $(`#park-card`).empty()
         $(`#park-card`).append(img, title, description, reviews, rating, check)
 
