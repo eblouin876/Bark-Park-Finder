@@ -259,7 +259,7 @@
 }
 
 /* The Modal (background) */
-.modal {
+.modal-mod {
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -281,26 +281,26 @@
 }
 
 /* Modal Header */
-.modal-header {
+.mod-header {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
 }
 
 /* Modal Body */
-.modal-body {
+.mod-body {
     padding: 2px 16px;
 }
 
 /* Modal Footer */
-.modal-footer {
+.mod-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
 }
 
 /* Modal Content */
-.modal-content {
+.mod-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -396,6 +396,8 @@
     .main-card {
         grid-area: 2 / 8 / 9 / 14;
     }
+
+
 
 }
 

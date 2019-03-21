@@ -28,7 +28,11 @@ btnsignup.addEventListener("click", e => {
     const auth = firebase.auth();
     const promise = auth.createUserWithEmailAndPassword(userEmail, userPass);
     promise.catch(e => console.log(e.message));
-    window.location = "signup.html";
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            window.location = "signup.html";
+        }
+    })
 })
 
 //on log out click, sign the user out, and go back to log in page
