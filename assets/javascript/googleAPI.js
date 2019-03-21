@@ -16,9 +16,10 @@ navigator.geolocation.getCurrentPosition(function (position) {
     currentLocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
-    }
-    
+    } 
 })
+
+var changedDist = document.getElementById('dist');
 
 
 function initMap() {
@@ -34,16 +35,19 @@ function initMap() {
         map: map,
     })
 
+
     queryDogParks();
+    changedDist.onchange = queryDogParks;
 
 
     map.setCenter(currentLocation);
     var MarkersArr = []
     //showMarkers(parkMarkArrary);
+    
     function queryDogParks() {
         var request = {
             location: currentLocation,
-            radius: '7000',
+            radius: document.getElementById('dist').value,
             keyword: 'off leash area',
             fields: ['name', 'geometry']
         };
@@ -57,10 +61,11 @@ function initMap() {
                     MarkersArr.push(addPlaceMarker(results[i]));
                     console.log(results[i]);
                 }
-
             }
             console.log(parkMarkArrary)
-            findClosestPark();
+            //findClosestPark();
+            //debugger
+            placeDetailsFromSearch(parkMarkArrary);
         })
     
     }
@@ -70,8 +75,6 @@ function initMap() {
             map: map,
             position: place.geometry.location
         });
-
-
     }
 
     google.maps.event.addListener(marker, 'mouseup', function () {
@@ -87,9 +90,11 @@ function initMap() {
         }
         MarkersArr = [];
         parkMarkArrary = [];
+        parks = {};
         console.log("LOOKIE" + MarkersArr);
         queryDogParks();
-       // findClosestPark();
+       // placeDetailsFromSearch(parkMarkArrary)
+        //findClosestPark();
         console.log(parkMarkArrary);
         console.log(currentLocation);
     })
@@ -97,19 +102,17 @@ function initMap() {
 
     function placeDetailsFromSearch(arr) {
         var placeIDarray = []
+        
         for (var i = 0; i < arr.length; i++) {
             placeIDarray.push(arr[i].place_id)
             console.log(arr[i].place_id)
         }
         queryPlaceDetail(placeIDarray);
     }
-
     var IdArray = [];
-
-
-    setTimeout(function () {
-        placeDetailsFromSearch(parkMarkArrary);
-    }, 2000)
+    // setTimeout(function () {
+    //     placeDetailsFromSearch(parkMarkArrary);
+    // }, 2000)
 
 
     var queryCount = 0;
@@ -122,20 +125,31 @@ function initMap() {
         fetch(queryURL).then(function (response) {
             response.json().then(function (response) {
                 console.log(response.result)
+                console.log(queryCount)
                 let result = response.result;
-                let reviews = [];
+                let reviews = [];                
                 for (var i = 0; i < result.reviews.length; i++) {
                     let val = result.reviews[i]
-                    let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)
+                    let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)     
                     reviews.push(review);
                 }
+                
                 let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.geometry.location, result.rating, reviews);
-                parks[result.place_id] = park;
-            });
+                parks[result.place_id] = park;               
+                });
+
             queryCount++;
             if (queryCount < idarry.length) {
                 queryPlaceDetail(idarry);
             }
+   
+            if((Object.keys(parks).length + 1) === idarry.length){
+               console.log("!!!" + parks)
+               queryCount = 0;
+               setTimeout(function () {
+                 findClosestPark();  
+               }, 2000);   
+           }          
             //jsonObj[IdArray[i]] = response;
         });
 
@@ -191,6 +205,7 @@ function findClosestPark() {
 
     var closestDistance = distances[0];
     console.log(closestDistance);
+    parks[parkMarkArrary[0].place_id].buildCard();
 }
 // setTimeout(() => {
 //     findClosestPark();
