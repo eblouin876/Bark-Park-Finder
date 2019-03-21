@@ -25,15 +25,22 @@ firebase.auth().onAuthStateChanged(function (user) {
         //when user selects an image as a profile picture, add it to the firebase storage
         picture.addEventListener("change", function (e) {
             var file = e.target.files[0];
-            profilePic = file;
             // if(firebase.storage().ref("userProfiles/" + user.uid)){
             //     console.log("gje")
             //     firebase.storage().ref("userProfiles/" + user.uid).delete();
             // }
 
             var storageRef = firebase.storage().ref("userProfiles/" + user.uid + "/" + file.name);
+            let storePicture = function () {
+                return new Promise(function (resolve, reject) {
+                    resolve(storageRef.put(file));
+                });
+            }
+            //storageRef.put(file);
 
-            storageRef.put(file);
+            storePicture().then(function () {
+                profilePic = storageRef.getDownloadURL();
+            })
         });
 
         //when user hits submit, store all values into firestore
@@ -49,22 +56,27 @@ firebase.auth().onAuthStateChanged(function (user) {
             var bioValue = bio.value;
             console.log(bioValue);
 
-            //this is to get the reference of the picture insde of firebase storage
-            var storage = firebase.storage();
-            var pathReference = storage.ref("userProfiles/" + uid + "/" + profilePic.name);
+            console.log(profilePic.i);
 
-            //adding values to database
-            db.collection("users").add({
-                email: useremail,
-                uid: uid,
-                username: userValue,
-                dog: dogValue,
-                bio: bioValue,
-                pic: pathReference
-            })
+            let storeData = function () {
+                return new Promise(function (resolve, reject) {
+                    resolve(
+                        //adding values to database
+                        db.collection("users").doc(uid).set({
+                            email: useremail,
+                            uid: uid,
+                            username: userValue,
+                            dog: dogValue,
+                            bio: bioValue,
+                            pic: profilePic.i
+                        })
+                    )
+                })
+            }
 
-
-
+            storeData().then(function () {
+                window.location = "index.html";
+            });
         })
     }
 })
