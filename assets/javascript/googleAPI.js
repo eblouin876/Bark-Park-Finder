@@ -91,8 +91,6 @@ function initMap() {
             let queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idarry[queryCount] + "&rankedby=distance&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
             fetch(queryURL).then((resp) => {
                 resp.json().then((response) => {
-                    // console.log(response.result)
-
                     let result = response.result;
                     // let photos = result.photos
                     // console.log(photos[0].getUrl({
