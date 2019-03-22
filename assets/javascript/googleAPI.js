@@ -16,7 +16,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     currentLocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
-    } 
+    }
 })
 
 var changedDist = document.getElementById('dist');
@@ -43,7 +43,7 @@ function initMap() {
     map.setCenter(currentLocation);
     var MarkersArr = []
     //showMarkers(parkMarkArrary);
-    
+
     function queryDogParks() {
         var request = {
             location: currentLocation,
@@ -67,7 +67,7 @@ function initMap() {
             //debugger
             placeDetailsFromSearch(parkMarkArrary);
         })
-    
+
     }
 
     function createMarker(place) {
@@ -85,7 +85,7 @@ function initMap() {
         map.setCenter(currentLocation);
         for (var i = 0; i < MarkersArr.length; i++) {
             MarkersArr[i].setMap(null);
-            
+
             //console.log("LOOKIE"+ MarkersArr);
         }
         MarkersArr = [];
@@ -93,7 +93,7 @@ function initMap() {
         parks = {};
         console.log("LOOKIE" + MarkersArr);
         queryDogParks();
-       // placeDetailsFromSearch(parkMarkArrary)
+        // placeDetailsFromSearch(parkMarkArrary)
         //findClosestPark();
         console.log(parkMarkArrary);
         console.log(currentLocation);
@@ -102,7 +102,7 @@ function initMap() {
 
     function placeDetailsFromSearch(arr) {
         var placeIDarray = []
-        
+
         for (var i = 0; i < arr.length; i++) {
             placeIDarray.push(arr[i].place_id)
             console.log(arr[i].place_id)
@@ -122,34 +122,39 @@ function initMap() {
         // console.log(queryCount)
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         var queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idarry[queryCount] + "&rankedby=distance&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
-        fetch(queryURL).then(function (response) {
-            response.json().then(function (response) {
+        fetch(queryURL).then(function (resp) {
+            resp.json().then(function (response) {
                 console.log(response.result)
-                console.log(queryCount)
+
                 let result = response.result;
-                let reviews = [];                
+                let photos = result.photos
+                // console.log(photos[0].getUrl({
+                //     'maxWidth': 35,
+                //     'maxHeight': 35
+                // }))
+                let reviews = [];
                 for (var i = 0; i < result.reviews.length; i++) {
                     let val = result.reviews[i]
-                    let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)     
+                    let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)
                     reviews.push(review);
                 }
-                
-                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.geometry.location, result.rating, reviews);
-                parks[result.place_id] = park;               
-                });
+
+                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, reviews);
+                parks[result.place_id] = park;
+            });
 
             queryCount++;
             if (queryCount < idarry.length) {
                 queryPlaceDetail(idarry);
             }
-   
-            if((Object.keys(parks).length + 1) === idarry.length){
-               console.log("!!!" + parks)
-               queryCount = 0;
-               setTimeout(function () {
-                 findClosestPark();  
-               }, 2000);   
-           }          
+
+            if ((Object.keys(parks).length + 1) === idarry.length) {
+                console.log("!!!" + parks)
+                queryCount = 0;
+                setTimeout(function () {
+                    findClosestPark();
+                }, 2000);
+            }
             //jsonObj[IdArray[i]] = response;
         });
 
@@ -204,8 +209,10 @@ function findClosestPark() {
     console.log(parkMarkArrary);
 
     var closestDistance = distances[0];
-    console.log(closestDistance);
+
     parks[parkMarkArrary[0].place_id].buildCard();
+    updateCurrentPark()
+
 }
 // setTimeout(() => {
 //     findClosestPark();
