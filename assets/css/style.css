@@ -340,6 +340,17 @@ body {
 
 
 @media screen and (max-width: 702px) {
+
+    .sup-emailT,
+    .sup-bioT,
+    .sup-usernameT,
+    .sup-breedT,
+    .sup-imageT,
+    .sup-passwordT {
+        font-size: 1.25rem;
+        align-self: end;
+    }
+
     .nav {
         grid-template-areas:
             ". nav-title nav-title login-button signup-button ."

@@ -171,7 +171,7 @@ class Dogs {
             method: 'GET'
         }).then((result) => {
             let dogs = result.message;
-            var allDogs = this.getDogsFromApi(dogs);
+            let allDogs = this.getDogsFromApi(dogs);
             this.createDogsOptions(allDogs);
         })
     }
@@ -196,7 +196,7 @@ class Dogs {
 
     createDogsOptions(dogs) {
         dogs.forEach((dog) => {
-            var option = $("<option>");
+            let option = $("<option>");
             option.text(dog);
             $("#dog-options").append(option)
             //append each option from array to list of options
@@ -204,12 +204,12 @@ class Dogs {
     }
 
     pullDogImage(dogToSearch) { //for the parameter here pass the value of the selected option from form select
-        var query = "https://dog.ceo/api/breed/" + dogToSearch.target.value + "/images/random"
+        let query = "https://dog.ceo/api/breed/" + dogToSearch.target.value + "/images/random"
         $.ajax({
             url: query,
             method: "GET",
 
-        }).then(function (result) {
+        }).then( (result)=> {
             console.log(result);
             console.log(result.message)
             return result.message
@@ -237,9 +237,9 @@ function signUp() {
     auth.onAuthStateChanged(user => {
         if (user) {
             let file = userProfilePic
-            var storageRef = storage.ref("userProfiles/" + user.uid + "/" + file.name);
+            let storageRef = storage.ref("userProfiles/" + user.uid + "/" + file.name);
 
-            storageRef.put(file).then(function () {
+            storageRef.put(file).then( ()=> {
                 storageRef.getDownloadURL().then((img) => {
                     let userEmail = user.email;
                     let uid = user.uid;
@@ -332,7 +332,7 @@ function updateCurrentPark() {
     // Clear the user-buttons and myModal ids
     $('#user-modals').empty()
     $('#user-buttons').empty()
-    db.collection('parkUsers').get().then(function (querySnapshot) {
+    db.collection('parkUsers').get().then( (querySnapshot) =>{
         querySnapshot.forEach((doc) => {
             let val = doc.data()
             if (!val.Init) {
@@ -343,14 +343,10 @@ function updateCurrentPark() {
                 let currentTime = hours + (minutes / 60);
 
                 if (currentTime - val.time > .75 || currentTime - val.time < 0) {
-                    db.collection('parkUsers').doc(doc.id).delete().then(function () {
-                        console.log("Document successfully deleted!");
-                    }).catch(function (error) {
+                    db.collection('parkUsers').doc(doc.id).delete().then( () =>{}).catch( (error)=> {
                         console.error("Error removing document: ", error);
                     });
-                    db.collection('checkIn').doc(doc.id).delete().then(function () {
-                        console.log("Document successfully deleted!");
-                    }).catch(function (error) {
+                    db.collection('checkIn').doc(doc.id).delete().then( () =>{}).catch( (error)=> {
                         console.error("Error removing document: ", error);
                     });
                     val.location = ""
@@ -390,7 +386,7 @@ $(document).ready(() => {
         }
     })
 
-    db.collection('parkUsers').onSnapshot(function (querySnapshot) {
+    db.collection('parkUsers').onSnapshot( (querySnapshot)=>{
         // Clear the user-buttons and myModal ids
         $('#user-modals').empty()
         $('#user-buttons').empty()
@@ -403,14 +399,14 @@ $(document).ready(() => {
                 let minutes = date.getMinutes();
                 let currentTime = hours + (minutes / 60)
                 if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                    db.collection('parkUsers').doc(doc.id).delete().then(function () {
+                    db.collection('parkUsers').doc(doc.id).delete().then( () =>{
                         console.log("Document successfully deleted!");
-                    }).catch(function (error) {
+                    }).catch( (error) =>{
                         console.error("Error removing document: ", error);
                     });
-                    db.collection('checkIn').doc(doc.id).delete().then(function () {
+                    db.collection('checkIn').doc(doc.id).delete().then( () =>{
                         console.log("Document successfully deleted!");
-                    }).catch(function (error) {
+                    }).catch( (error) =>{
                         console.error("Error removing document: ", error);
                     });
                     val.location = ""
