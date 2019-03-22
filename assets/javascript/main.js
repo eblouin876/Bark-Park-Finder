@@ -198,6 +198,7 @@ class MapApi {
         })
     }
 }
+
 let gmap = new MapApi()
 
 function initMap() {

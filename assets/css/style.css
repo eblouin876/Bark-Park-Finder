@@ -278,7 +278,9 @@ body {
     object-fit: contain;
     max-width: 100%;
     margin-bottom: inherit;
-    max-height: calc(4 * var(--row-height))
+    max-height: calc(4 * var(--row-height));
+    justify-self: center;
+    align-self: center;
 }
 
 .card-title {
