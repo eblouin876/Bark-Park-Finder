@@ -290,6 +290,10 @@ body {
     grid-area: text;
 }
 
+.paw-rating {
+    max-height: 1rem;
+}
+
 .card-reviews,
 .card-rating,
 .card-checkin {
