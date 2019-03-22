@@ -5,10 +5,10 @@ class MapApi {
         this.currentLocation;
         this.map;
         this.marker;
-        this.markersArr;
+        this.markersArr = [];
         this.service;
         this.parkMarkArray = [];
-        this.parks;
+        this.parks = {};
         this.queryCount = 0;
         this.useLocationServices();
         // this.initMap()
@@ -62,20 +62,20 @@ class MapApi {
 
     queryDogParks() {
         let request = {
-            location: currentLocation,
+            location: this.currentLocation,
             radius: $('#dist').val(),
             keyword: 'off leash area',
             fields: ['name', 'geometry']
         };
-        service = new google.maps.places.PlacesService(this.map);
-        service.nearbySearch(request, (results, status) => {
+        this.service = new google.maps.places.PlacesService(this.map);
+        this.service.nearbySearch(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (let i = 0; i < results.length; i++) {
                     this.parkMarkArray.push(results[i]);
                     this.markersArr.push(this.addPlaceMarker(results[i]));
                 }
             }
-            this.placeDetailsFromSearch(this.parkMarkArray);
+            this.placeDetailsFrormSearch(this.parkMarkArray);
         })
     }
 
@@ -89,7 +89,7 @@ class MapApi {
 
     queryPlaceDetail(idArr) {
         let proxyurl = "https://cors-anywhere.herokuapp.com/";
-        let queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idarry[queryCount] + "&rankedby=distance&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
+        let queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idArr[this.queryCount] + "&rankedby=distance&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
         fetch(queryURL).then((resp) => {
             resp.json().then((response) => {
                 let result = response.result;
@@ -99,7 +99,6 @@ class MapApi {
                     let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)
                     reviews.push(review);
                 }
-
                 // Still need to get the images pulling in
                 let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, reviews);
                 this.parks[result.place_id] = park;
@@ -122,7 +121,7 @@ class MapApi {
     addPlaceMarker(place) {
         let marker = new google.maps.Marker({
             position: place.geometry.location,
-            map: map,
+            map: this.map,
             icon: 'https://img.icons8.com/ultraviolet/40/000000/corgi.png',
             draggable: false,
             animation: google.maps.Animation.DROP,
@@ -198,4 +197,13 @@ class MapApi {
             this.queryDogParks();
         })
     }
+}
+let gmap = new MapApi()
+
+function initMap() {
+    gmap.buildMap()
+    gmap.placeLocationMarker()
+    gmap.queryDogParks()
+    gmap.setListeners()
+    gmap.map.setCenter(this.currentLocation)
 }

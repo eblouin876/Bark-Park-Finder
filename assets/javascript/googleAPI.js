@@ -125,18 +125,21 @@ function initMap() {
         fetch(queryURL).then(function (resp) {
             resp.json().then(function (response) {
                 console.log(response.result)
+
                 let result = response.result;
+                let photos = result.photos
+                // console.log(photos[0].getUrl({
+                //     'maxWidth': 35,
+                //     'maxHeight': 35
+                // }))
                 let reviews = [];
                 for (var i = 0; i < result.reviews.length; i++) {
                     let val = result.reviews[i]
                     let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)
                     reviews.push(review);
                 }
-                let photoReference
-                if (result.photos) {
-                    photoReference = result.photos[0].photo_reference
-                }
-                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, photoReference, reviews);
+
+                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, reviews);
                 parks[result.place_id] = park;
             });
 
@@ -207,16 +210,6 @@ function findClosestPark() {
 
     var closestDistance = distances[0];
 
-    if (parks[parkMarkArrary[0].place_id].photoReference) {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        let queryUrl = `${proxyurl}https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${parks[parkMarkArrary[0].place_id].photoReference}&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM`
-        fetch(queryUrl)
-            .then((response) => {
-                response.json().then((myJson) => {
-                    console.log(myJson);
-                });
-            });
-    }
     parks[parkMarkArrary[0].place_id].buildCard();
     updateCurrentPark()
 

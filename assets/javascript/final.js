@@ -7,13 +7,12 @@ let storage = firebase.storage();
 
 // Class declarations
 class ParkCard {
-    constructor(image, name, description, location, rating, photoReference, reviews = []) {
+    constructor(image, name, description, location, rating, reviews = []) {
         this.image = image;
         this.name = name;
         this.description = description;
         this.location = location;
         this.rating = rating;
-        this.photoReference = photoReference;
         this.reviews = reviews;
         if (this.rating > 4.7) {
             this.rating = "assets/images/paws5.png"

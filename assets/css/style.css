@@ -343,8 +343,17 @@ body {
 @media screen and (max-width: 702px) {
     .nav {
         grid-template-areas:
-            ". nav-title nav-title nav-button ."
-            "nav-expand nav-expand nav-expand nav-expand nav-expand"
+            ". nav-title nav-title login-button signup-button ."
+            "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand"
+    }
+
+    .login-button,
+    .signup-button {
+        font-size: .75rem;
+    }
+
+    .login-button {
+        justify-self: center
     }
 
     .user-box {
