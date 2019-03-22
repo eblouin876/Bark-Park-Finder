@@ -8,22 +8,87 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
-
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
 </head>
 
 <body>
 
     <nav class="nav">
         <h1 class="nav-title">Bark Park Finder</h1>
-        <img src="assets/images/menu.png" class="nav-button">
-        <div class="nav-expand">
-            <h2 class="nav-expand-txt">Favorites</h2>
-        </div>
+
+        <h3 class="signup-button" data-toggle="modal" data-target="#signUpModal">Sign
+            Up</h3>
+
+
+        <h3 class="login-button d-none" id="btnlogout">Log Out</h3>
+
+        <h3 class="login-button" id='login-collapse' data-toggle="modal" data-target="#logInModal">Log In</h1>
+
     </nav>
 
     <div class="wrapper">
+        <div class="sign-up-modal">
+            <!-- Modal for sign up -->
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signUpModalLabel">Create your Account
+                            </h5>
+                        </div>
+                        <div class="modal-body sign-modal-body">
+                            <h2 class="sup-emailT">Enter your Email</h2>
+                            <h2 class="sup-usernameT">Enter a Username</h2>
+                            <h2 class="sup-passwordT">Enter a Password</h2>
+                            <h2 class="sup-breedT">Choose a Breed</h2>
+                            <h2 class="sup-bioT">Profile Bio</h2>
+                            <h2 class="sup-imageT">Choose a Profile Picture</h2>
+                            <input class="sup-email" id="supemail" type="email" placeholder="Email">
+                            <input class="sup-username" id="supusername" type="text" placeholder="Username">
+
+                            <input class="sup-password" type="password" id="suppassword" placeholder="Password">
+                            <input class="sup-breed" type="text" id="supdog" placeholder="Breed of Dog">
+                            <textarea class="sup-bio" id="supbio" name="Bio" placeholder="Bio"
+                                style="height:200px; width:200px;"></textarea>
+                            <input class="sup-image" id="supprofilepic" type="file" name="pic" accept="image/*">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnsignup">Subimt</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="log-in-modal">
+            <!-- Modal for log in -->
+            <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logInModalLabel">Create your Account
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <input id="LIemail" type="email" placeholder="Email">
+
+                            <input type="password" id="LIpassword" placeholder="Password">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnlogin"
+                                data-dismiss="modal">Subimt</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
         <div class="inputs">
             <div id="distance">
                 <select class="input-box" id="dist">
@@ -53,11 +118,11 @@
             <h2 class="card-title" id="park-name">Park Name</h2>
             <p class="card-text">Fanciful description of the wonders that your dog can experience here</p>
             <button class="card-reviews" data-toggle="modal" data-target="#parkModal">Reviews</button>
-            <div class="card-rating center">* * * * *</div>
+            <img src="assets/images/paws3.png" class="card-rating center">
             <button class="card-checkin" id="check-in" data-location="The real test">Check In</button>
         </div>
         <div>
-            <!-- Modal -->
+            <!-- Modal for reviews -->
             <div class="modal fade" id="parkModal" tabindex="-1" role="dialog" aria-labelledby="parkModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -71,9 +136,6 @@
                                     </div>
 
                                 </div>
-                                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button> -->
                                 <div class="row">
 
 
@@ -162,14 +224,15 @@
     </script>
 
     <script type='text/javascript' src="assets/javascript/grid.js"></script>
-    <script type="text/javascript" src="assets/javascript/auth.js"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/auth.js"></script> -->
     <script type="text/javascript" src="assets/javascript/user.js"></script>
     <script type='text/javascript' src='assets/javascript/main.js'></script>
 
     <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
     <script type='text/javascript' src="assets/javascript/parkCard.js"></script>
-    <script type='text/javascript' src="assets/javascript/checkIn.js"></script>
-    <script type='text/javascript' src="assets/javascript/updateCurrent.js"></script>
+    <!-- <script type='text/javascript' src="assets/javascript/checkIn.js"></script>
+    <script type='text/javascript' src="assets/javascript/updateCurrent.js"></script> -->
+    <script type='text/javascript' src="assets/javascript/final.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&callback=initMap"></script> -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"

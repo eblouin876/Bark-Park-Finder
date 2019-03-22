@@ -9,16 +9,29 @@
     --row-height: calc(100vh / 12)
 }
 
+body {
+    background-image: url("../images/background.png");
+}
+
+
+/* Modal backdrop got in way of using modal... not sure why */
+/* .modal-backdrop {
+    z-index: -1
+} */
+
 
 /* Navbar */
 .nav {
     display: grid;
+    position: fixed;
+    top: 1rem;
+    width: 100%;
     grid-area: nav;
-    grid-template-columns: 5% 1fr 1fr 1fr 5%;
-    grid-template-rows: 2.5rem;
+    grid-template-columns: 5% 20% 1fr 10% 10% 5%;
+    grid-template-rows: 3rem;
     grid-template-areas:
-        ". . nav-title nav-button ."
-        "nav-expand nav-expand nav-expand nav-expand nav-expand"
+        ". . nav-title login-button signup-button ."
+        "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand"
 }
 
 .nav-title {
@@ -29,10 +42,19 @@
     justify-self: center;
 }
 
-.nav-button {
-    grid-area: nav-button;
+.login-button {
+    grid-area: login-button;
     justify-self: right;
-    align-self: end;
+    align-self: center;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 1rem !important;
+}
+
+.signup-button {
+    grid-area: signup-button;
+    justify-self: center;
+    align-self: center;
     background-color: transparent;
     border: none;
 }
@@ -43,62 +65,97 @@
     height: 0px;
     overflow: hidden;
     color: var(--text-color);
-    background-color: var(--accent-color);
-    grid-template-columns: 1fr 5%;
+    grid-template-columns: 5% 1fr 10% 1fr 5% 10% 5%;
     grid-template-areas:
-        "nav-expand-txt ."
-}
-
-.nav-expand-txt {
-    grid-area: nav-expand-txt;
-    justify-self: right;
-    color: var(--text-color);
-    padding: .5rem;
-    font-size: 1.5rem;
-    text-decoration: none;
+        ". nav-expand-email . nav-expand-pwd . nav-expand-login ."
 }
 
 
-/* Footer */
-.footer {
+.nav-expand-email {
+    grid-area: nav-expand-email;
+}
+
+.nav-expand-pwd {
+    grid-area: nav-expand-pwd;
+}
+
+.nav-expand-login {
+    grid-area: nav-expand-login;
+}
+
+
+/* Sign up modal */
+.sign-modal-body {
     display: grid;
-    grid-area: foot;
-    grid-template-columns: 5% 1fr 1fr 1fr 5%;
+    grid-template-columns: 1fr 5% 1fr;
     grid-template-areas:
-        "foot-contact foot-contact foot-contact foot-contact foot-contact"
-        ". . cont-button . ."
+        "sup-emailT . sup-bioT"
+        "sup-email . sup-bio"
+        "sup-usernameT . sup-bio"
+        "sup-username . sup-bio"
+        "sup-passwordT . sup-bio"
+        "sup-password . sup-imageT"
+        "sup-breedT . sup-image"
+        "sup-breed . sup-image";
 }
 
-.contact-button {
-    grid-area: cont-button;
-    justify-self: center;
+.sup-emailT,
+.sup-bioT,
+.sup-usernameT,
+.sup-breedT,
+.sup-imageT,
+.sup-passwordT {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
 }
 
-.contact-form {
-    display: grid;
-    grid-area: foot-contact;
-    height: 0px;
-    overflow: hidden;
-    grid-template-columns: 15% 1fr 15%;
-    grid-template-areas:
-        ". cont-name ."
-        ". cont-email ."
-        ". cont-mes ."
-        ". cont-mes .";
+.sup-emailT {
+    grid-area: sup-emailT;
 }
 
-.contact-name {
-    grid-area: cont-name;
+.sup-email {
+    grid-area: sup-email;
 }
 
-.contact-email {
-    grid-area: cont-email;
+.sup-usernameT {
+    grid-area: sup-usernameT;
 }
 
-.contact-message {
-    grid-area: cont-mes;
+.sup-username {
+    grid-area: sup-username;
 }
 
+.sup-passwordT {
+    grid-area: sup-passwordT;
+}
+
+.sup-password {
+    grid-area: sup-password;
+}
+
+.sup-breedT {
+    grid-area: sup-breedT;
+}
+
+.sup-breed {
+    grid-area: sup-breed;
+}
+
+.sup-bioT {
+    grid-area: sup-bioT;
+}
+
+.sup-bio {
+    grid-area: sup-bio;
+}
+
+.sup-imageT {
+    grid-area: sup-imageT;
+}
+
+.sup-image {
+    grid-area: sup-image;
+}
 
 
 /* General Properties */
@@ -110,12 +167,6 @@
     align-self: center;
     justify-self: center;
 }
-
-.scroll-box {
-    overflow: scroll;
-    padding: .25rem;
-}
-
 
 /* Primary wrapper */
 .wrapper {
@@ -173,6 +224,12 @@
     overflow: scroll;
     grid-area: 3 / 10 / 11 / 14;
     border: .5px solid black;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+.user-box::-webkit-scrollbar {
+    display: none;
 }
 
 .user-card {
@@ -252,6 +309,7 @@
 .card-rating {
     grid-area: card-rating;
     border: none;
+    background-color: transparent;
 }
 
 .card-checkin {

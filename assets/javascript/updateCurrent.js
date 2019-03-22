@@ -30,7 +30,7 @@ function updateCurrentPark() {
             // returns val.bio, val.dog, val.email, val.location, val.pic, val.uid, val.username
             let hours = date.getHours();
             let minutes = date.getMinutes();
-            let currentTime = hours + (minutes / 60)
+            let currentTime = hours + (minutes / 60);
             if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
                 db.collection('parkUsers').doc(doc.id).update({
                     location: "",

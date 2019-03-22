@@ -5,6 +5,7 @@ let collapseNav = () => {
             height: "100%"
         })
         $(".nav-expand").attr("state", "open")
+        $(".nav-button").addClass("d-none")
     } else {
         $(".nav-expand").animate({
             height: "0"
@@ -13,47 +14,6 @@ let collapseNav = () => {
     }
 }
 
-let scrollLink = function (event) {
-    event.preventDefault();
-    $("html, body").animate({
-        scrollTop: $($(this).attr("href")).offset().top
-    }, 500);
-    $(".nav-expand").animate({
-        height: "0"
-    })
-    $(".nav-expand").attr("state", "collapsed")
-}
-
-
-// Scroll in animations
-var $portfolioCards = $('.sliding');
-var $window = $(window);
-
-let checkIfInView = function () {
-    let windowHeight = $window.height();
-    let windowTopPosition = $window.scrollTop();
-    let windowBottomPosition = windowTopPosition + windowHeight;
-
-    $.each($portfolioCards, function () {
-        let $card = $(this);
-        var cardHeight = $card.outerHeight();
-        let cardTopPosition = $card.offset().top;
-        let cardBottomPosition = cardTopPosition + cardHeight;
-
-        if (cardBottomPosition >= windowTopPosition && cardTopPosition <= windowBottomPosition) {
-            $card.addClass('in-view')
-            $card.removeClass('d-none')
-        } else {
-            $card.removeClass('in-view')
-            $card.removeClass('d-none')
-        }
-    })
-}
-
-$window.on('scroll resize', checkIfInView);
-
 
 // Document listeners
-$(document).on('click', '.nav-button', collapseNav)
-
-$(document).on('click', '.scroll-link', scrollLink)
+$(document).on('click', '#login-collapse', collapseNav)
