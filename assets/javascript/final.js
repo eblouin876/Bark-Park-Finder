@@ -130,46 +130,36 @@ class userCard {
 
 
         // Build modal
+        let modal = $("<div>")
+            .addClass('modal fade')
+            .attr('id', `${this.uid}Modal`)
+            .attr('tabindex', '-1')
+            .attr('role', 'dialog');
+        let modalDialog = $('<div>')
+            .addClass('modal-dialog')
+            .attr('role', 'document');
+        let modalContent = $("<div>")
+            .addClass('modal-content');
+        let modalHeader = $("<div>")
+            .addClass('modal-header')
+            .attr('style', 'justify-content:center');
+        let modalTitle = $('<h2>').text(this.username).addClass('modal-contents');
+        let modalBody = $("<div>");
+        let modalPic = $('<img>')
+            .attr('src', this.picture)
+            .attr('alt', this.username)
+            .addClass('modal-img modal-contents');
+        let modalDog = $('<h3>').text(this.dog).addClass('modal-contents');
+        let modalBio = $('<p>').text(this.bio).addClass('modal-contents');
+        let modalFooter = $('<div>')
+            .addClass('modal-footer');
+        let modalDismiss = $('<button>')
+            .attr('type', 'button')
+            .addClass('btn')
+            .attr('data-dismiss', 'modal')
+            .text('Close');
 
-
-        // let modalContent = $("<div>")
-        //     .addClass("modal-content mod-content");
-
-        // let modalHeader = $("<div>")
-        //     .addClass("modal-header mod-header");
-        // let modalBody = $("<div>")
-        //     .addClass("modal-body mod-body");
-        // let modalFooter = $("<div>")
-        //     .addClass("modal-footer mod-footer");
-        // let span = $("<span>")
-        //     .addClass("close")
-        //     .html('&times;');
-
-        // let displayUser = $("<h2>")
-        //     .text(this.username);
-        // let paraContact = $("<p>")
-        //     .text("Email: " + this.contact);
-        // let paraDog = $("<p>")
-        //     .text("Dog: " + this.dog);
-        // let paraBio = $("<p>")
-        //     .text("My Bio: " + this.bio);
-        // let br = $("<br>");
-        // let profilePic = $("<img>")
-        //     .attr("src", this.picture);
-
-        // modalHeader.append(span);
-        // modalHeader.append(displayUser);
-        // modalBody.append(paraContact);
-        // modalBody.append(br)
-        // modalBody.append(paraDog);
-        // modalBody.append(br)
-        // modalBody.append(paraBio);
-        // modalBody.append(br)
-        // modalBody.append(profilePic);
-        // modalContent.append(modalHeader);
-        // modalContent.append(modalBody);
-        // modalContent.append(modalFooter);
-        // $("#user-modals").append(modalContent);
+        $('#user-modals').append(modal.append(modalDialog.append(modalContent.append(modalHeader.append(modalTitle), modalBody.append(modalPic, modalDog, modalBio), modalFooter.append(modalDismiss)))))
     }
 
 }
@@ -290,27 +280,33 @@ function updateCurrentPark() {
     db.collection('parkUsers').get().then(function (querySnapshot) {
         querySnapshot.forEach((doc) => {
             let val = doc.data()
-            let date = new Date();
-            // returns: .checkInTime, .location, .uid
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            let currentTime = hours + (minutes / 60);
-            if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                db.collection('parkUsers').doc(doc.id).delete().then(function () {
-                    console.log("Document successfully deleted!");
-                }).catch(function (error) {
-                    console.error("Error removing document: ", error);
-                });
-                val.location = ""
-            }
-            if (val.location === $('#check-in').attr('data-location')) {
-                db.collection("users").doc(val.uid).get().then(user => {
-                    user = user.data()
-                    // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
-                    let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
-                })
+            if (!val.Init) {
+                let date = new Date();
+                // returns: .time, .location, .uid
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let currentTime = hours + (minutes / 60);
 
-
+                if (currentTime - val.time > .75 || currentTime - val.time < 0) {
+                    db.collection('parkUsers').doc(doc.id).delete().then(function () {
+                        console.log("Document successfully deleted!");
+                    }).catch(function (error) {
+                        console.error("Error removing document: ", error);
+                    });
+                    db.collection('checkIn').doc(doc.id).delete().then(function () {
+                        console.log("Document successfully deleted!");
+                    }).catch(function (error) {
+                        console.error("Error removing document: ", error);
+                    });
+                    val.location = ""
+                }
+                if (val.location === $('#check-in').attr('data-location')) {
+                    db.collection("users").doc(val.uid).get().then(user => {
+                        user = user.data()
+                        // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
+                        let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                    })
+                }
             }
         })
 
@@ -344,24 +340,32 @@ $(document).ready(() => {
         $('#user-buttons').empty()
         querySnapshot.forEach((doc) => {
             let val = doc.data()
-            let date = new Date();
-            // returns val.bio, val.dog, val.email, val.location, val.checkInTime val.pic, val.uid, val.username
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            let currentTime = hours + (minutes / 60)
-            if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                db.collection('parkUsers').doc(doc.id).delete().then(function () {
-                    console.log("Document successfully deleted!");
-                }).catch(function (error) {
-                    console.error("Error removing document: ", error);
-                });
-                val.location = ""
-            }
-            if (val.location === $('#check-in').attr('data-location')) {
-                db.collection("users").doc(val.uid).get().then(user => {
-                    // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
-                    let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
-                })
+            if (!val.Init) {
+                let date = new Date();
+                // returns val.bio, val.dog, val.email, val.location, val.checkInTime val.pic, val.uid, val.username
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let currentTime = hours + (minutes / 60)
+                if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
+                    db.collection('parkUsers').doc(doc.id).delete().then(function () {
+                        console.log("Document successfully deleted!");
+                    }).catch(function (error) {
+                        console.error("Error removing document: ", error);
+                    });
+                    db.collection('checkIn').doc(doc.id).delete().then(function () {
+                        console.log("Document successfully deleted!");
+                    }).catch(function (error) {
+                        console.error("Error removing document: ", error);
+                    });
+                    val.location = ""
+                }
+                if (val.location === $('#check-in').attr('data-location')) {
+                    db.collection("users").doc(val.uid).get().then(user => {
+                        user = user.data()
+                        // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
+                        let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                    })
+                }
             }
         })
 

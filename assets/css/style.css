@@ -327,6 +327,13 @@ body {
     margin: .5rem;
 }
 
+.modal-img {
+    max-width: 35%;
+}
+
+.modal-contents {
+    margin-left: 1rem;
+}
 
 
 
