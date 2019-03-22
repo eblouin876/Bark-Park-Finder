@@ -7,12 +7,13 @@ let storage = firebase.storage();
 
 // Class declarations
 class ParkCard {
-    constructor(image, name, description, location, rating, reviews = []) {
+    constructor(image, name, description, location, rating, photoReference, reviews = []) {
         this.image = image;
         this.name = name;
         this.description = description;
         this.location = location;
         this.rating = rating;
+        this.photoReference = photoReference;
         this.reviews = reviews;
         if (this.rating > 4.7) {
             this.rating = "assets/images/paws5.png"
@@ -105,7 +106,7 @@ class Review {
     }
 }
 
-class userCard {
+class UserCard {
 
     //constructor takes in a username, email, picture, bio, dog, and location
     constructor(username, contact, picture, bio, dog, uid) {
@@ -164,13 +165,68 @@ class userCard {
 
 }
 
+class Dogs {
+    constructor() {
+        $.ajax({
+            url: "https://dog.ceo/api/breeds/list/all",
+            method: 'GET'
+        }).then((result) => {
+            let dogs = result.message;
+            var allDogs = this.getDogsFromApi(dogs);
+            this.createDogsOptions(allDogs);
+        })
+    }
+    //puts json objects into array of dogs
+    getDogsFromApi(dogs) {
+        Object.keys(dogs)
+        let allDogs = []
+        for (let key in dogs) {
+            if (dogs[key]) {
+                dogs[key].forEach((subbreed) => {
+                    subbreed = subbreed.charAt(0).toUpperCase() + subbreed.slice(1)
+                    key = key.charAt(0).toUpperCase() + key.slice(1)
+                    allDogs.push(subbreed + " " + key)
+                })
+            } else {
+                key = key.charAt(0).toUpperCase() + key.slice(1)
+                allDogs.push(key.charAt(0).toUpperCase())
+            }
+        }
+        return allDogs;
+    }
+
+    createDogsOptions(dogs) {
+        dogs.forEach((dog) => {
+            var option = $("<option>");
+            option.text(dog);
+            $("#dog-options").append(option)
+            //append each option from array to list of options
+        })
+    }
+
+    pullDogImage(dogToSearch) { //for the parameter here pass the value of the selected option from form select
+        var query = "https://dog.ceo/api/breed/" + dogToSearch.target.value + "/images/random"
+        $.ajax({
+            url: query,
+            method: "GET",
+
+        }).then(function (result) {
+            console.log(result);
+            console.log(result.message)
+            return result.message
+        })
+    }
+}
+
+
+
 
 // Functions
 function signUp() {
     let email = $("#supemail")
     let username = $("#supusername")
     let password = $("#suppassword")
-    let breed = $("#supdog")
+    let breed = $("#dog-options")
     let bio = $("#supbio")
 
     let userEmail = email.val();
@@ -304,12 +360,13 @@ function updateCurrentPark() {
                     db.collection("users").doc(val.uid).get().then(user => {
                         user = user.data()
                         // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
-                        let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                        let usr = new UserCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
                     })
                 }
             }
         })
-
+        let title = "Currently at " + $('.card-title').text()
+        $('.user-title').text(title)
     })
 }
 
@@ -363,12 +420,13 @@ $(document).ready(() => {
                     db.collection("users").doc(val.uid).get().then(user => {
                         user = user.data()
                         // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
-                        let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                        let usr = new UserCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
                     })
                 }
             }
         })
-
+        let title = "Currently at " + $('.card-title').text()
+        $('.user-title').text(title)
     })
 
     if (auth.currentUser) {
@@ -378,4 +436,10 @@ $(document).ready(() => {
         $("#btnlogout").addClass("d-none")
         $("#login-collapse").removeClass("d-none")
     }
+
+    let dogs = new Dogs()
+
+    // Would like this to pull an image of the dog, but the API isn't quite working right
+    // $(document).on('change', '#dog-options', dogs.pullDogImage)
+
 })

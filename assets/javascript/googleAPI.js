@@ -122,10 +122,9 @@ function initMap() {
         // console.log(queryCount)
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         var queryURL = proxyurl + "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + idarry[queryCount] + "&rankedby=distance&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM"
-        fetch(queryURL).then(function (response) {
-            response.json().then(function (response) {
+        fetch(queryURL).then(function (resp) {
+            resp.json().then(function (response) {
                 console.log(response.result)
-                console.log(queryCount)
                 let result = response.result;
                 let reviews = [];
                 for (var i = 0; i < result.reviews.length; i++) {
@@ -133,8 +132,11 @@ function initMap() {
                     let review = new Review(val.profile_photo_url, val.author_name, val.rating, val.text)
                     reviews.push(review);
                 }
-
-                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, reviews);
+                let photoReference
+                if (result.photos) {
+                    photoReference = result.photos[0].photo_reference
+                }
+                let park = new ParkCard("https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548__340.jpg", result.name, result.formatted_address, result.place_id, result.rating, photoReference, reviews);
                 parks[result.place_id] = park;
             });
 
@@ -204,9 +206,20 @@ function findClosestPark() {
     console.log(parkMarkArrary);
 
     var closestDistance = distances[0];
-    console.log(closestDistance);
+
+    if (parks[parkMarkArrary[0].place_id].photoReference) {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        let queryUrl = `${proxyurl}https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${parks[parkMarkArrary[0].place_id].photoReference}&key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM`
+        fetch(queryUrl)
+            .then((response) => {
+                response.json().then((myJson) => {
+                    console.log(myJson);
+                });
+            });
+    }
     parks[parkMarkArrary[0].place_id].buildCard();
     updateCurrentPark()
+
 }
 // setTimeout(() => {
 //     findClosestPark();

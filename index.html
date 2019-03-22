@@ -50,7 +50,16 @@
                             <input class="sup-username" id="supusername" type="text" placeholder="Username">
 
                             <input class="sup-password" type="password" id="suppassword" placeholder="Password">
-                            <input class="sup-breed" type="text" id="supdog" placeholder="Breed of Dog">
+                            <form action="" class="sup-breed" id="supdog">
+                                <div class="dropdown">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Breed slecet</label>
+                                        <select class="form-control" id="dog-options">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
                             <textarea class="sup-bio" id="supbio" name="Bio" placeholder="Bio"
                                 style="height:200px; width:200px;"></textarea>
                             <input class="sup-image" id="supprofilepic" type="file" name="pic" accept="image/*">
@@ -180,6 +189,8 @@
             </div>
         </div>
 
+        <h2 class="user-title"></h2>
+
         <div class="user-box" id="user-box">
             <!-- Trigger/Open The Modal -->
             <div id="user-buttons">
@@ -223,12 +234,12 @@
         firebase.initializeApp(config);
     </script>
 
-    <script type='text/javascript' src="assets/javascript/final.js"></script>
 
     <!-- <script type='text/javascript' src="assets/javascript/grid.js"></script> -->
     <!-- <script type="text/javascript" src="assets/javascript/auth.js"></script> -->
     <!-- <script type="text/javascript" src="assets/javascript/user.js"></script> -->
     <!-- <script type='text/javascript' src='assets/javascript/main.js'></script> -->
+    <script type='text/javascript' src="assets/javascript/final.js"></script>
 
     <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
     <!-- <script type='text/javascript' src="assets/javascript/parkCard.js"></script> -->

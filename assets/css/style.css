@@ -223,9 +223,12 @@ body {
     grid-auto-rows: calc(100% / 4);
     overflow: scroll;
     grid-area: 3 / 10 / 11 / 14;
-    border: .5px solid black;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
+}
+
+.user-title {
+    grid-area: 2 / 10 / 3 / 14;
 }
 
 .user-box::-webkit-scrollbar {
@@ -345,7 +348,11 @@ body {
     }
 
     .user-box {
-        grid-area: 13 / 2 / 19 / 14;
+        grid-area: 14 / 2 / 19 / 14;
+    }
+
+    .user-title {
+        grid-area: 13 / 10 / 14 / 14;
     }
 
     /* Map box */
@@ -366,9 +373,13 @@ body {
 
 @media screen and (min-width: 702px) {
     .user-box {
-        grid-area: 10 / 2 / 13 / 14;
+        grid-area: 11 / 2 / 13 / 14;
         grid-auto-rows: 50%;
         grid-template-columns: repeat(6, 1fr)
+    }
+
+    .user-title {
+        grid-area: 10 / 10 / 11 / 14;
     }
 
     /* Map box */
@@ -395,9 +406,13 @@ body {
 
     /* Users box */
     .user-box {
-        grid-area: 2 / 10 / 10 / 14;
+        grid-area: 3/ 10 / 10 / 14;
         grid-template-columns: repeat(3, calc(100% / 3));
         grid-auto-rows: calc(100% / 4);
+    }
+
+    .user-title {
+        grid-area: 2 / 10 / 3 / 14;
     }
 
     /* Map box */
