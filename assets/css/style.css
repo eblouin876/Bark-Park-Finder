@@ -278,7 +278,9 @@ body {
     object-fit: contain;
     max-width: 100%;
     margin-bottom: inherit;
-    max-height: calc(4 * var(--row-height))
+    max-height: calc(4 * var(--row-height));
+    justify-self: center;
+    align-self: center;
 }
 
 .card-title {
@@ -338,6 +340,17 @@ body {
 
 
 @media screen and (max-width: 702px) {
+
+    .sup-emailT,
+    .sup-bioT,
+    .sup-usernameT,
+    .sup-breedT,
+    .sup-imageT,
+    .sup-passwordT {
+        font-size: 1.25rem;
+        align-self: end;
+    }
+
     .nav {
         grid-template-areas:
             ". nav-title nav-title login-button signup-button ."

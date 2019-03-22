@@ -220,7 +220,11 @@
 
     <!--Firebase-->
 
-    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+
     <script>
         // Initialize Firebase
         var config = {
@@ -234,18 +238,11 @@
         firebase.initializeApp(config);
     </script>
 
-
-    <!-- <script type='text/javascript' src="assets/javascript/grid.js"></script> -->
-    <!-- <script type="text/javascript" src="assets/javascript/auth.js"></script> -->
-    <!-- <script type="text/javascript" src="assets/javascript/user.js"></script> -->
+    <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
     <script type='text/javascript' src="assets/javascript/final.js"></script>
     <!-- <script type='text/javascript' src='assets/javascript/main.js'></script> -->
 
-    <script type='text/javascript' src='assets/javascript/googleAPI.js'></script>
-    <!-- <script type='text/javascript' src="assets/javascript/parkCard.js"></script> -->
-    <!-- <script type='text/javascript' src="assets/javascript/checkIn.js"></script>
-    <script type='text/javascript' src="assets/javascript/updateCurrent.js"></script> -->
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&callback=initMap"></script> -->
+
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vLUfavKg4fYmtRJOKm_QfbyQxD-8jJM&libraries=places&callback=initMap"
         async defer></script>
