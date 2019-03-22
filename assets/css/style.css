@@ -374,6 +374,7 @@ body {
 
     .user-title {
         grid-area: 14 / 2 / 15 / 14;
+        font-size: 1.5rem !important;
     }
 
     /* Map box */

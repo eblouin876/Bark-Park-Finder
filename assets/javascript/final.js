@@ -305,6 +305,8 @@ let collapseNav = () => {
 }
 
 function checkIn() {
+
+    // TODO: Make it so your checkin overrides the previous checkIn
     let user = auth.currentUser;
 
     if (user) {
