@@ -94,7 +94,7 @@ function initMap() {
                     // console.log(response.result)
 
                     let result = response.result;
-                    let photos = result.photos
+                    // let photos = result.photos
                     // console.log(photos[0].getUrl({
                     //     'maxWidth': 35,
                     //     'maxHeight': 35
