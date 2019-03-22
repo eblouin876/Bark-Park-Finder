@@ -1,8 +1,8 @@
 // Global Variables
 let userProfilePic = "";
-let db = firebase.firestore();
-let auth = firebase.auth();
-let storage = firebase.storage();
+let db = "";
+let auth = "";
+let storage = "";
 
 
 // Class declarations
@@ -209,15 +209,13 @@ class Dogs {
             url: query,
             method: "GET",
 
-        }).then( (result)=> {
+        }).then((result) => {
             console.log(result);
             console.log(result.message)
             return result.message
         })
     }
 }
-
-
 
 
 // Functions
@@ -239,7 +237,7 @@ function signUp() {
             let file = userProfilePic
             let storageRef = storage.ref("userProfiles/" + user.uid + "/" + file.name);
 
-            storageRef.put(file).then( ()=> {
+            storageRef.put(file).then(() => {
                 storageRef.getDownloadURL().then((img) => {
                     let userEmail = user.email;
                     let uid = user.uid;
@@ -332,7 +330,7 @@ function updateCurrentPark() {
     // Clear the user-buttons and myModal ids
     $('#user-modals').empty()
     $('#user-buttons').empty()
-    db.collection('parkUsers').get().then( (querySnapshot) =>{
+    db.collection('parkUsers').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             let val = doc.data()
             if (!val.Init) {
@@ -343,10 +341,10 @@ function updateCurrentPark() {
                 let currentTime = hours + (minutes / 60);
 
                 if (currentTime - val.time > .75 || currentTime - val.time < 0) {
-                    db.collection('parkUsers').doc(doc.id).delete().then( () =>{}).catch( (error)=> {
+                    db.collection('parkUsers').doc(doc.id).delete().then(() => {}).catch((error) => {
                         console.error("Error removing document: ", error);
                     });
-                    db.collection('checkIn').doc(doc.id).delete().then( () =>{}).catch( (error)=> {
+                    db.collection('checkIn').doc(doc.id).delete().then(() => {}).catch((error) => {
                         console.error("Error removing document: ", error);
                     });
                     val.location = ""
@@ -362,12 +360,27 @@ function updateCurrentPark() {
         })
         let title = "Currently at " + $('.card-title').text()
         $('.user-title').text(title)
+        checkUser()
     })
+}
+
+function checkUser() {
+    if (auth.currentUser) {
+        $("#btnlogout").removeClass("d-none")
+        $("#login-collapse").addClass("d-none")
+    } else {
+        $("#btnlogout").addClass("d-none")
+        $("#login-collapse").removeClass("d-none")
+    }
 }
 
 
 // Document Listeners
 $(document).ready(() => {
+    db = firebase.firestore();
+    auth = firebase.auth();
+    storage = firebase.storage();
+
     $("#supprofilepic").on("change", changeProfilePic)
 
     $(document).on('click', '#btnlogout', logOut)
@@ -386,7 +399,7 @@ $(document).ready(() => {
         }
     })
 
-    db.collection('parkUsers').onSnapshot( (querySnapshot)=>{
+    db.collection('parkUsers').onSnapshot((querySnapshot) => {
         // Clear the user-buttons and myModal ids
         $('#user-modals').empty()
         $('#user-buttons').empty()
@@ -399,14 +412,14 @@ $(document).ready(() => {
                 let minutes = date.getMinutes();
                 let currentTime = hours + (minutes / 60)
                 if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                    db.collection('parkUsers').doc(doc.id).delete().then( () =>{
+                    db.collection('parkUsers').doc(doc.id).delete().then(() => {
                         console.log("Document successfully deleted!");
-                    }).catch( (error) =>{
+                    }).catch((error) => {
                         console.error("Error removing document: ", error);
                     });
-                    db.collection('checkIn').doc(doc.id).delete().then( () =>{
+                    db.collection('checkIn').doc(doc.id).delete().then(() => {
                         console.log("Document successfully deleted!");
-                    }).catch( (error) =>{
+                    }).catch((error) => {
                         console.error("Error removing document: ", error);
                     });
                     val.location = ""
@@ -423,14 +436,6 @@ $(document).ready(() => {
         let title = "Currently at " + $('.card-title').text()
         $('.user-title').text(title)
     })
-
-    if (auth.currentUser) {
-        $("#btnlogout").removeClass("d-none")
-        $("#login-collapse").addClass("d-none")
-    } else {
-        $("#btnlogout").addClass("d-none")
-        $("#login-collapse").removeClass("d-none")
-    }
 
     let dogs = new Dogs()
 
