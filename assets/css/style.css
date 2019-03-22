@@ -10,15 +10,23 @@
 }
 
 
+body {
+    background-image: url('../images/background.png')
+}
+
+
 /* Navbar */
 .nav {
     display: grid;
+    position: fixed;
+    top: 1rem;
+    width: 100%;
     grid-area: nav;
-    grid-template-columns: 5% 1fr 1fr 1fr 5%;
-    grid-template-rows: 2.5rem;
+    grid-template-columns: 5% 20% 1fr 10% 10% 5%;
+    grid-template-rows: 3rem;
     grid-template-areas:
-        ". . nav-title nav-button ."
-        "nav-expand nav-expand nav-expand nav-expand nav-expand"
+        ". . nav-title login-button signup-button ."
+        "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand"
 }
 
 .nav-title {
@@ -29,10 +37,19 @@
     justify-self: center;
 }
 
-.nav-button {
-    grid-area: nav-button;
+.login-button {
+    grid-area: login-button;
     justify-self: right;
-    align-self: end;
+    align-self: center;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 1rem !important;
+}
+
+.signup-button {
+    grid-area: signup-button;
+    justify-self: center;
+    align-self: center;
     background-color: transparent;
     border: none;
 }
@@ -43,62 +60,97 @@
     height: 0px;
     overflow: hidden;
     color: var(--text-color);
-    background-color: var(--accent-color);
-    grid-template-columns: 1fr 5%;
+    grid-template-columns: 5% 1fr 10% 1fr 5% 10% 5%;
     grid-template-areas:
-        "nav-expand-txt ."
-}
-
-.nav-expand-txt {
-    grid-area: nav-expand-txt;
-    justify-self: right;
-    color: var(--text-color);
-    padding: .5rem;
-    font-size: 1.5rem;
-    text-decoration: none;
+        ". nav-expand-email . nav-expand-pwd . nav-expand-login ."
 }
 
 
-/* Footer */
-.footer {
+.nav-expand-email {
+    grid-area: nav-expand-email;
+}
+
+.nav-expand-pwd {
+    grid-area: nav-expand-pwd;
+}
+
+.nav-expand-login {
+    grid-area: nav-expand-login;
+}
+
+
+/* Sign up modal */
+.sign-modal-body {
     display: grid;
-    grid-area: foot;
-    grid-template-columns: 5% 1fr 1fr 1fr 5%;
+    grid-template-columns: 1fr 5% 1fr;
     grid-template-areas:
-        "foot-contact foot-contact foot-contact foot-contact foot-contact"
-        ". . cont-button . ."
+        "sup-emailT . sup-bioT"
+        "sup-email . sup-bio"
+        "sup-usernameT . sup-bio"
+        "sup-username . sup-bio"
+        "sup-passwordT . sup-bio"
+        "sup-password . sup-imageT"
+        "sup-breedT . sup-image"
+        "sup-breed . sup-image";
 }
 
-.contact-button {
-    grid-area: cont-button;
-    justify-self: center;
+.sup-emailT,
+.sup-bioT,
+.sup-usernameT,
+.sup-breedT,
+.sup-imageT,
+.sup-passwordT {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
 }
 
-.contact-form {
-    display: grid;
-    grid-area: foot-contact;
-    height: 0px;
-    overflow: hidden;
-    grid-template-columns: 15% 1fr 15%;
-    grid-template-areas:
-        ". cont-name ."
-        ". cont-email ."
-        ". cont-mes ."
-        ". cont-mes .";
+.sup-emailT {
+    grid-area: sup-emailT;
 }
 
-.contact-name {
-    grid-area: cont-name;
+.sup-email {
+    grid-area: sup-email;
 }
 
-.contact-email {
-    grid-area: cont-email;
+.sup-usernameT {
+    grid-area: sup-usernameT;
 }
 
-.contact-message {
-    grid-area: cont-mes;
+.sup-username {
+    grid-area: sup-username;
 }
 
+.sup-passwordT {
+    grid-area: sup-passwordT;
+}
+
+.sup-password {
+    grid-area: sup-password;
+}
+
+.sup-breedT {
+    grid-area: sup-breedT;
+}
+
+.sup-breed {
+    grid-area: sup-breed;
+}
+
+.sup-bioT {
+    grid-area: sup-bioT;
+}
+
+.sup-bio {
+    grid-area: sup-bio;
+}
+
+.sup-imageT {
+    grid-area: sup-imageT;
+}
+
+.sup-image {
+    grid-area: sup-image;
+}
 
 
 /* General Properties */
@@ -111,12 +163,6 @@
     justify-self: center;
 }
 
-.scroll-box {
-    overflow: scroll;
-    padding: .25rem;
-}
-
-
 /* Primary wrapper */
 .wrapper {
     display: grid;
@@ -124,13 +170,15 @@
     grid-auto-rows: var(--row-height);
     color: var(--text-color);
     overflow: hidden;
+    background-image: url("../images/background.png");
+
 }
 
 /* Input boxes */
 .inputs {
     grid-area: 2 / 2 / 3 / 14;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 #distance {
@@ -172,7 +220,16 @@
     grid-auto-rows: calc(100% / 4);
     overflow: scroll;
     grid-area: 3 / 10 / 11 / 14;
-    border: .5px solid black;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+.user-title {
+    grid-area: 2 / 10 / 3 / 14;
+}
+
+.user-box::-webkit-scrollbar {
+    display: none;
 }
 
 .user-card {
@@ -219,7 +276,7 @@
 .card-image {
     grid-area: img;
     object-fit: contain;
-    width: 100%;
+    max-width: 100%;
     margin-bottom: inherit;
     max-height: calc(4 * var(--row-height))
 }
@@ -231,6 +288,10 @@
 
 .card-text {
     grid-area: text;
+}
+
+.paw-rating {
+    max-height: 1rem;
 }
 
 .card-reviews,
@@ -252,6 +313,7 @@
 .card-rating {
     grid-area: card-rating;
     border: none;
+    background-color: transparent;
 }
 
 .card-checkin {
@@ -259,21 +321,46 @@
 }
 
 
-/* Review Image */
-.review-image {
-    max-height: 25%;
-    max-width: 25%;
+/* Modal Mods */
+.modal-toggle-img {
+    max-width: 100%;
+    margin: .5rem;
 }
+
+.modal-img {
+    max-width: 35%;
+}
+
+.modal-contents {
+    margin-left: 1rem;
+}
+
+
 
 @media screen and (max-width: 702px) {
     .nav {
         grid-template-areas:
-            ". nav-title nav-title nav-button ."
-            "nav-expand nav-expand nav-expand nav-expand nav-expand"
+            ". nav-title nav-title login-button signup-button ."
+            "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand";
+        position: relative;
+
+    }
+
+    .login-button,
+    .signup-button {
+        font-size: .75rem;
+    }
+
+    .login-button {
+        justify-self: center
     }
 
     .user-box {
-        grid-area: 13 / 2 / 19 / 14;
+        grid-area: 15 / 2 / 20 / 14;
+    }
+
+    .user-title {
+        grid-area: 14 / 2 / 15 / 14;
     }
 
     /* Map box */
@@ -289,14 +376,28 @@
     /* Main card styling */
     .main-card {
         grid-area: 7 / 2 / 10 / 14;
+        grid-template-columns: auto;
+        margin: 0;
+        margin-top: .5rem;
+    }
+
+    .card-image {
+        justify-self: center;
+        align-self: center;
     }
 }
 
 @media screen and (min-width: 702px) {
     .user-box {
-        grid-area: 10 / 2 / 13 / 14;
+        grid-area: 11 / 2 / 13 / 14;
         grid-auto-rows: 50%;
         grid-template-columns: repeat(6, 1fr)
+    }
+
+    .user-title {
+        grid-area: 10 / 2 / 11 / 14;
+        align-self: center;
+        justify-self: center;
     }
 
     /* Map box */
@@ -315,15 +416,21 @@
     }
 
 
+
 }
+
 
 @media screen and (min-width: 1200px) {
 
     /* Users box */
     .user-box {
-        grid-area: 2 / 10 / 10 / 14;
+        grid-area: 3/ 10 / 10 / 14;
         grid-template-columns: repeat(3, calc(100% / 3));
         grid-auto-rows: calc(100% / 4);
+    }
+
+    .user-title {
+        grid-area: 2 / 10 / 3 / 14;
     }
 
     /* Map box */
