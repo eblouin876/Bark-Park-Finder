@@ -9,15 +9,10 @@
     --row-height: calc(100vh / 12)
 }
 
+
 body {
-    background-image: url("../images/background.png");
+    background-image: url('../images/background.png')
 }
-
-
-/* Modal backdrop got in way of using modal... not sure why */
-/* .modal-backdrop {
-    z-index: -1
-} */
 
 
 /* Navbar */
@@ -175,6 +170,8 @@ body {
     grid-auto-rows: var(--row-height);
     color: var(--text-color);
     overflow: hidden;
+    background-image: url("../images/background.png");
+
 }
 
 /* Input boxes */
@@ -279,7 +276,7 @@ body {
 .card-image {
     grid-area: img;
     object-fit: contain;
-    width: 100%;
+    max-width: 100%;
     margin-bottom: inherit;
     max-height: calc(4 * var(--row-height))
 }
@@ -344,7 +341,9 @@ body {
     .nav {
         grid-template-areas:
             ". nav-title nav-title login-button signup-button ."
-            "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand"
+            "nav-expand nav-expand nav-expand nav-expand nav-expand nav-expand";
+        position: relative;
+
     }
 
     .login-button,
@@ -357,11 +356,11 @@ body {
     }
 
     .user-box {
-        grid-area: 14 / 2 / 19 / 14;
+        grid-area: 15 / 2 / 20 / 14;
     }
 
     .user-title {
-        grid-area: 13 / 10 / 14 / 14;
+        grid-area: 14 / 2 / 15 / 14;
     }
 
     /* Map box */
@@ -377,6 +376,14 @@ body {
     /* Main card styling */
     .main-card {
         grid-area: 7 / 2 / 10 / 14;
+        grid-template-columns: auto;
+        margin: 0;
+        margin-top: .5rem;
+    }
+
+    .card-image {
+        justify-self: center;
+        align-self: center;
     }
 }
 
@@ -388,7 +395,9 @@ body {
     }
 
     .user-title {
-        grid-area: 10 / 10 / 11 / 14;
+        grid-area: 10 / 2 / 11 / 14;
+        align-self: center;
+        justify-self: center;
     }
 
     /* Map box */
