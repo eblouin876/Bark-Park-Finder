@@ -46,7 +46,7 @@ class ParkCard {
         let description = $('<p>').addClass('card-text').text(this.description)
         let reviews = $('<button>').addClass('card-reviews').attr('data-toggle', 'modal').attr('data-target', '#parkModal').text("Reviews")
         let rating = $('<img>').addClass('card-rating center').attr('src', this.rating)
-        let check = $('<button>').addClass('card-checkin').text('Check In').attr('data-location', this.location)
+        let check = $('<button>').addClass('card-checkin').text('Check In').attr('data-location', this.location).attr('id', 'check-in')
         $(`#park-card`).empty()
         $(`#park-card`).append(img, title, description, reviews, rating, check)
 
@@ -115,80 +115,63 @@ class userCard {
         this.bio = bio;
         this.dog = dog;
         this.uid = uid;
-        this.buildTile("#buttonDiv", "#myModal");
-        this.modalUserCard()
+        this.buildUser();
     }
 
-    //buildTile takes in a parent ID that is a div where the cards are going to be placed
-    //it also takes in a div to place modals with the information of the user
-    buildTile(parentID, modalID) {
-        let button = $("<button>")
-            .attr("id", this.uid);
+    buildUser() {
+        // Build button img
         let image = $("<img>")
-            .addClass("user-image")
-            .attr("src", this.picture);
-        button.append(image);
-        $(parentID).append(button);
+            .addClass("modal-toggle-img")
+            .attr('data-toggle', 'modal')
+            .attr('data-target', `#${this.uid}Modal`)
+            .attr("src", this.picture)
+            .attr('alt', this.username);
+        $("#user-buttons").append(image);
 
-        let modalContent = $("<div>")
-            .addClass("modal-content mod-content");
 
-        let modalHeader = $("<div>")
-            .addClass("modal-header mod-header");
-        let modalBody = $("<div>")
-            .addClass("modal-body mod-body");
-        let modalFooter = $("<div>")
-            .addClass("modal-footer mod-footer");
-        let span = $("<span>")
-            .addClass("close")
-            .html('&times;');
+        // Build modal
 
-        let displayUser = $("<h2>")
-            .text(this.username);
-        let paraContact = $("<p>")
-            .text("Email: " + this.contact);
-        let paraDog = $("<p>")
-            .text("Dog: " + this.dog);
-        let paraBio = $("<p>")
-            .text("My Bio: " + this.bio);
-        let br = $("<br>");
-        let profilePic = $("<img>")
-            .attr("src", this.picture);
 
-        modalHeader.append(span);
-        modalHeader.append(displayUser);
-        modalBody.append(paraContact);
-        modalBody.append(br)
-        modalBody.append(paraDog);
-        modalBody.append(br)
-        modalBody.append(paraBio);
-        modalBody.append(br)
-        modalBody.append(profilePic);
-        modalContent.append(modalHeader);
-        modalContent.append(modalBody);
-        modalContent.append(modalFooter);
-        $(modalID).append(modalContent);
+        // let modalContent = $("<div>")
+        //     .addClass("modal-content mod-content");
+
+        // let modalHeader = $("<div>")
+        //     .addClass("modal-header mod-header");
+        // let modalBody = $("<div>")
+        //     .addClass("modal-body mod-body");
+        // let modalFooter = $("<div>")
+        //     .addClass("modal-footer mod-footer");
+        // let span = $("<span>")
+        //     .addClass("close")
+        //     .html('&times;');
+
+        // let displayUser = $("<h2>")
+        //     .text(this.username);
+        // let paraContact = $("<p>")
+        //     .text("Email: " + this.contact);
+        // let paraDog = $("<p>")
+        //     .text("Dog: " + this.dog);
+        // let paraBio = $("<p>")
+        //     .text("My Bio: " + this.bio);
+        // let br = $("<br>");
+        // let profilePic = $("<img>")
+        //     .attr("src", this.picture);
+
+        // modalHeader.append(span);
+        // modalHeader.append(displayUser);
+        // modalBody.append(paraContact);
+        // modalBody.append(br)
+        // modalBody.append(paraDog);
+        // modalBody.append(br)
+        // modalBody.append(paraBio);
+        // modalBody.append(br)
+        // modalBody.append(profilePic);
+        // modalContent.append(modalHeader);
+        // modalContent.append(modalBody);
+        // modalContent.append(modalFooter);
+        // $("#user-modals").append(modalContent);
     }
 
-    modalUserCard() {
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementById(this.uid);
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
 }
 
 
@@ -279,7 +262,7 @@ let collapseNav = () => {
 }
 
 function checkIn() {
-    let user = firebase.auth().currentUser;
+    let user = auth.currentUser;
 
     if (user) {
         let userId = user.uid;
@@ -301,23 +284,33 @@ function checkIn() {
 }
 
 function updateCurrentPark() {
-    // Clear the buttonDiv and myModal ids
-    db.collection('parkUsers').get(function (querySnapshot) {
+    // Clear the user-buttons and myModal ids
+    $('#user-modals').empty()
+    $('#user-buttons').empty()
+    db.collection('parkUsers').get().then(function (querySnapshot) {
         querySnapshot.forEach((doc) => {
             let val = doc.data()
-            // returns val.bio, val.dog, val.email, val.location, val.pic, val.uid, val.username
+            let date = new Date();
+            // returns: .checkInTime, .location, .uid
             let hours = date.getHours();
             let minutes = date.getMinutes();
             let currentTime = hours + (minutes / 60);
             if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                db.collection('parkUsers').doc(doc.id).update({
-                    location: "",
-                    checkInTime: ""
-                })
+                db.collection('parkUsers').doc(doc.id).delete().then(function () {
+                    console.log("Document successfully deleted!");
+                }).catch(function (error) {
+                    console.error("Error removing document: ", error);
+                });
                 val.location = ""
             }
             if (val.location === $('#check-in').attr('data-location')) {
-                let user = new userCard(val.username, val.email, val.pic, val.bio, val.dog, val.uid)
+                db.collection("users").doc(val.uid).get().then(user => {
+                    user = user.data()
+                    // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
+                    let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                })
+
+
             }
         })
 
@@ -346,32 +339,39 @@ $(document).ready(() => {
     })
 
     db.collection('parkUsers').onSnapshot(function (querySnapshot) {
-        // Clear the buttonDiv and myModal ids
+        // Clear the user-buttons and myModal ids
+        $('#user-modals').empty()
+        $('#user-buttons').empty()
         querySnapshot.forEach((doc) => {
             let val = doc.data()
+            let date = new Date();
             // returns val.bio, val.dog, val.email, val.location, val.checkInTime val.pic, val.uid, val.username
             let hours = date.getHours();
             let minutes = date.getMinutes();
             let currentTime = hours + (minutes / 60)
             if (currentTime - val.checkInTime > .75 || currentTime - val.checkInTime < 0) {
-                db.collection('parkUsers').doc(doc.id).update({
-                    location: "",
-                    checkInTime: ""
-                })
+                db.collection('parkUsers').doc(doc.id).delete().then(function () {
+                    console.log("Document successfully deleted!");
+                }).catch(function (error) {
+                    console.error("Error removing document: ", error);
+                });
                 val.location = ""
             }
             if (val.location === $('#check-in').attr('data-location')) {
-                let user = new userCard(val.username, val.email, val.pic, val.bio, val.dog, val.uid)
+                db.collection("users").doc(val.uid).get().then(user => {
+                    // returns user.bio, user.dog, user.email, user.location, user.pic, user.uid, user.username
+                    let usr = new userCard(user.username, user.email, user.pic, user.bio, user.dog, user.uid)
+                })
             }
         })
 
     })
 
     if (auth.currentUser) {
-        $("#btnlogout").addClass("d-none")
-        $("#login-collapse").removeClass("d-none")
-    } else {
         $("#btnlogout").removeClass("d-none")
         $("#login-collapse").addClass("d-none")
+    } else {
+        $("#btnlogout").addClass("d-none")
+        $("#login-collapse").removeClass("d-none")
     }
 })
